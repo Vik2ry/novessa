@@ -1,0 +1,1 @@
+"""Novessa Django project configuration."""

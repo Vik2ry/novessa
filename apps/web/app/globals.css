@@ -1,0 +1,2403 @@
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --surface: #f8f9ff;
+  --surface-low: #eff4ff;
+  --surface-mid: #e5eeff;
+  --surface-high: #d3e4fe;
+  --ink: #0b1c30;
+  --ink-soft: #42474e;
+  --line: #c2c7ce;
+  --primary: #00263f;
+  --primary-soft: #0b3c5d;
+  --primary-fixed: #a3cbf2;
+  --secondary: #855300;
+  --accent: #fea619;
+  --accent-soft: #ffddb8;
+  --tertiary: #002a1a;
+  --tertiary-soft: #00422b;
+  --success: #10b981;
+  --success-soft: #6ffbbe;
+  --error: #ba1a1a;
+  --shadow-1: 0 12px 24px -12px rgba(11, 60, 93, 0.12);
+  --shadow-2: 0 24px 48px -24px rgba(11, 60, 93, 0.2);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: Inter, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand {
+  font-family: "Public Sans", Inter, Arial, sans-serif;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+p,
+ul,
+blockquote {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+.container {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.pageSurface {
+  min-height: 100vh;
+}
+
+.section {
+  padding: 72px 0;
+}
+
+.section.alt {
+  background: var(--surface-low);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sectionHeader {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.sectionHeader.centered,
+.centeredStack,
+.heroBannerContent.centered {
+  text-align: center;
+  justify-items: center;
+}
+
+.sectionHeader.split {
+  align-items: flex-end;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+.sectionHeader h1,
+.sectionHeader h2,
+.heroPanel h1,
+.heroBannerContent h1,
+.heroHeader h1,
+.programHero h1,
+.storyHeroShell h1,
+.successStateCard h1,
+.errorStateCard h1 {
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1.06;
+}
+
+.sectionHeader p,
+.heroPanel p,
+.heroBannerContent p,
+.heroHeader p,
+.panel p,
+.programCardBody p,
+.storyCardBody p,
+.featureStoryCard p,
+.quoteCard p,
+.copyStack p,
+.stepCard p,
+.planCard p,
+.formMeta,
+.mobileDrawerPromo li,
+.mobileDrawerMeta a,
+.partnerModes li,
+.volunteerChecklist li {
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.sectionLink {
+  align-items: center;
+  color: var(--secondary);
+  display: inline-flex;
+  font-weight: 800;
+  gap: 8px;
+}
+
+.sectionLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.button {
+  align-items: center;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.buttonPrimary,
+.buttonAccent {
+  background: var(--accent);
+  box-shadow: 0 2px 0 rgba(42, 23, 0, 0.12);
+  color: #2a1700;
+  font-weight: 800;
+}
+
+.buttonLight {
+  background: white;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.buttonGhost {
+  background: white;
+  border: 1px solid var(--primary-soft);
+  color: var(--primary-soft);
+  font-weight: 700;
+}
+
+.buttonFull {
+  width: 100%;
+}
+
+.buttonOutlineLight {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: white;
+}
+
+/* ─── Site Header ──────────────────────────────────────── */
+
+.siteHeader {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(194, 199, 206, 0.55);
+  box-shadow: 0 2px 10px rgba(11, 60, 93, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+
+.navShell,
+.brandBlock,
+.navLinks,
+.navActions,
+.footerBottom,
+.buttonRow,
+.tagRow,
+.toggleRow,
+.filterBarRow,
+.filterTabs,
+.progressMeta,
+.panelHeader,
+.regionRow,
+.metricListRow,
+.paymentMethod,
+.summaryRows > div,
+.wizardStep,
+.newsletterFields {
+  align-items: center;
+  display: flex;
+}
+
+.navShell {
+  gap: 20px;
+  justify-content: space-between;
+  min-height: 80px;
+}
+
+.brandBlock {
+  gap: 12px;
+}
+
+.brand {
+  color: #0b3c5d;
+  font-size: 1.28rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.navLinks {
+  gap: 28px;
+}
+
+.navLink,
+.navTextLink {
+  color: #526070;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.navLink.active,
+.mobileDrawerLink.active,
+.mobileBottomNavLink.active,
+.mobileMiniNavLink.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+.navActions {
+  gap: 16px;
+}
+
+.navDonateButton {
+  min-width: 108px;
+  background: var(--primary-soft);
+  color: white;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  min-height: 44px;
+  padding: 0 20px;
+  cursor: pointer;
+  border: 0;
+  transition: opacity 180ms ease;
+}
+
+.navDonateButton:hover {
+  opacity: 0.9;
+}
+
+.navIconButton {
+  align-items: center;
+  background: transparent;
+  border-radius: 999px;
+  color: var(--primary);
+  cursor: pointer;
+  display: inline-flex;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+.mobileDrawerOverlay {
+  background: rgba(11, 28, 48, 0.42);
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity 180ms ease;
+  z-index: 70;
+}
+
+.mobileDrawerOverlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileDrawer {
+  background: linear-gradient(180deg, #f7fbff, #ffffff);
+  box-shadow: var(--shadow-2);
+  display: grid;
+  gap: 24px;
+  inset: 0 auto 0 0;
+  max-width: 360px;
+  padding: 24px;
+  position: fixed;
+  transform: translateX(-100%);
+  transition: transform 220ms ease;
+  width: min(88vw, 360px);
+  z-index: 80;
+}
+
+.mobileDrawer.open {
+  transform: translateX(0);
+}
+
+.mobileDrawerHeader,
+.mobileDrawerBottomNav,
+.availabilityGrid,
+.footerSocials,
+.documentList,
+.heroMetricRow,
+.metricGrid,
+.statGrid,
+.infoGrid,
+.programGrid,
+.storyGrid,
+.quoteGrid,
+.partnerGrid,
+.contactGrid,
+.dashboardSplit,
+.detailGrid,
+.blogLayout,
+.paymentFlowGrid,
+.galleryGrid,
+.partnerInquiryLayout,
+.volunteerFormLayout,
+.splitShowcase {
+  display: grid;
+}
+
+.mobileDrawerHeader {
+  align-items: center;
+  grid-template-columns: 1fr auto;
+}
+
+.mobileDrawerBody {
+  display: grid;
+  gap: 14px;
+}
+
+.mobileDrawerLink {
+  color: var(--primary);
+  font-family: "Public Sans", Inter, Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 4px 0;
+}
+
+.mobileDrawerPromo {
+  background: var(--tertiary-soft);
+  border-radius: var(--radius-lg);
+  color: white;
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+}
+
+.mobileDrawerPromo h3,
+.mobileDrawerPromo li,
+.mobileDrawerPromo a,
+.mobileDrawerPromo .eyebrow {
+  color: white;
+}
+
+.mobileDrawerPromo ul,
+.reasonList,
+.volunteerChecklist ul,
+.partnerModes ul {
+  display: grid;
+  gap: 10px;
+  padding-left: 18px;
+}
+
+.mobileDrawerMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mobileDrawerMeta a {
+  align-items: center;
+  display: inline-flex;
+  gap: 6px;
+}
+
+.mobileDrawerBottomNav {
+  border-top: 1px solid var(--line);
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-top: 12px;
+}
+
+.mobileMiniNavLink {
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.mobileBottomNav {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid rgba(194, 199, 206, 0.55);
+  bottom: 0;
+  display: none;
+  inset-inline: 0;
+  justify-content: space-around;
+  padding: 10px 12px;
+  position: fixed;
+  z-index: 55;
+}
+
+.mobileBottomNavLink {
+  align-items: center;
+  border-radius: 12px;
+  color: var(--ink-soft);
+  display: grid;
+  font-size: 0.68rem;
+  gap: 4px;
+  justify-items: center;
+  min-width: 60px;
+  padding: 8px 6px;
+}
+
+.mobileBottomNavLink.active {
+  background: var(--surface-mid);
+}
+
+/* ─── Hero ─────────────────────────────────────────────── */
+
+.heroSplit,
+.featureGrid,
+.programHeroGrid,
+.storyDetailGrid {
+  display: grid;
+  gap: 0;
+}
+
+.heroSplit {
+  min-height: 680px;
+}
+
+.heroMedia,
+.heroBackdrop,
+.programHeroMedia {
+  overflow: hidden;
+  position: relative;
+}
+
+.heroMedia img,
+.heroBackdrop img,
+.programHeroMedia img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.heroMedia.dimmed::after {
+  background: rgba(0, 38, 63, 0.46);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.homeHero,
+.donateHero,
+.volunteerHero,
+.partnersHero {
+  grid-template-columns: 55fr 45fr;
+}
+
+.heroPanel {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+  padding: 64px;
+}
+
+.heroPanel.dark,
+.heroHeader.dark,
+.programHero.dark,
+.ctaBand.dark,
+.reportsPanel.dark,
+.leadershipCard.dark,
+.partnerModes.dark,
+.featureStoryCard,
+.panel.dark {
+  background: var(--primary);
+  color: white;
+}
+
+.heroPanel.deepGreen {
+  background: var(--tertiary-soft);
+  color: white;
+}
+
+/* ─── Program Hero ─────────────────────────────────────── */
+
+/* The program hero now uses the tertiary-container (dark green) tone from the design */
+.programHero.dark {
+  background: var(--tertiary-soft);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle texture overlay on the hero background */
+.programHero.dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E") repeat;
+  pointer-events: none;
+}
+
+.programHero.dark h1 {
+  font-size: clamp(2.4rem, 4vw, 3rem);
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.programHero.dark p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  max-width: 540px;
+}
+
+/* Active initiative badge */
+.programInitiativeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--success-soft);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  margin-bottom: 16px;
+}
+
+/* Hero metric numbers (large amber numbers in the reference) */
+.heroMetricRow {
+  gap: 0;
+  margin-top: 8px;
+}
+
+.heroMetricCard {
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  display: grid;
+  gap: 4px;
+  min-width: auto;
+  padding: 16px 32px 16px 0;
+  margin-right: 32px;
+}
+
+.heroMetricCard:last-child {
+  border-right: none;
+}
+
+.heroMetricCard strong {
+  color: var(--accent);
+  font-size: 2.5rem;
+  font-family: "Public Sans", Inter, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.heroMetricCard span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Program hero image — rounded with border and shadow like the design */
+.programHeroMedia {
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.4);
+  min-height: 320px;
+  aspect-ratio: 16/10;
+}
+
+.programHeroGrid {
+  align-items: center;
+  gap: 48px;
+  grid-template-columns: 1.25fr 0.95fr;
+}
+
+/* ─── Hero Goal Callout Card ───────────────────────────── */
+
+.heroGoalCard {
+  position: absolute;
+  bottom: -16px;
+  left: -16px;
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  z-index: 2;
+}
+
+.heroGoalCardIcon {
+  background: rgba(254, 166, 25, 0.12);
+  border-radius: 999px;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.heroGoalCard strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.heroGoalCard span {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+/* ─── Detail Layout ────────────────────────────────────── */
+
+.heroPanel.dark h1,
+.heroPanel.dark h2,
+.heroPanel.deepGreen h1,
+.heroPanel.deepGreen h2,
+.heroHeader.compact h1,
+.featureStoryCard h2,
+.leadershipCard.dark h2,
+.reportsPanel.dark h2,
+.ctaBand.dark h2,
+.partnerModes.dark h2,
+.heroBannerContent h1 {
+  color: white;
+}
+
+.heroPanel.dark p,
+.heroPanel.deepGreen p,
+.heroHeader.dark p,
+.ctaBand.dark p,
+.reportsPanel.dark p,
+.leadershipCard.dark p,
+.partnerModes.dark p,
+.featureStoryCard p,
+.panel.dark p,
+.panel.dark h2,
+.panel.dark h3,
+.documentList.inverted a {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.buttonRow,
+.tagRow {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.buttonRow.centered {
+  justify-content: center;
+}
+
+.tagRow span {
+  align-items: center;
+  color: rgba(255, 255, 255, 0.84);
+  display: inline-flex;
+  gap: 6px;
+}
+
+.heroBanner,
+.heroHeader,
+.programHero,
+.storyHero {
+  position: relative;
+}
+
+.heroBanner {
+  min-height: 560px;
+}
+
+.heroBackdrop {
+  inset: 0;
+  position: absolute;
+}
+
+.heroBackdrop::after {
+  background: rgba(0, 38, 63, 0.7);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.heroBannerContent {
+  color: white;
+  display: grid;
+  gap: 18px;
+  min-height: 560px;
+  position: relative;
+  z-index: 1;
+}
+
+.heroBannerContent p {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.heroHeader {
+  padding: 72px 0 40px;
+}
+
+.heroHeader.light {
+  background: white;
+}
+
+.heroHeader.compact {
+  background: var(--tertiary-soft);
+  color: white;
+}
+
+.heroHeader.compact p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+/* ─── Filter Bar ───────────────────────────────────────── */
+
+.filterBar {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(194, 199, 206, 0.55);
+  position: sticky;
+  top: 80px;
+  z-index: 40;
+}
+
+.filterBarRow {
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.filterTabs {
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.filterTab {
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 4px;
+}
+
+.filterTab.active {
+  border-bottom-color: var(--primary);
+  color: var(--primary);
+}
+
+.heroHeader .container,
+.programHero .container,
+.storyHeroShell,
+.heroBannerContent {
+  display: grid;
+  gap: 18px;
+}
+
+.programHero {
+  padding: 72px 0;
+}
+
+/* ─── Stat Band ────────────────────────────────────────── */
+
+.statBand.dark {
+  background: var(--tertiary);
+  color: white;
+  padding: 28px 0;
+}
+
+.statGrid,
+.metricGrid,
+.infoGrid.threeUp,
+.programGrid,
+.storyGrid,
+.quoteGrid,
+.partnerGrid {
+  gap: 24px;
+}
+
+.statGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statItem strong,
+.metricTile strong {
+  color: var(--success-soft);
+  display: block;
+  font-family: "Public Sans", Inter, Arial, sans-serif;
+  font-size: 2rem;
+}
+
+.statItem span,
+.metricTile span,
+.programMeta,
+.storyCardMeta span,
+.programBadge,
+.wizardStep span {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.metricGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 24px;
+}
+
+.metricTile {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+}
+
+/* ─── Panels & Cards ───────────────────────────────────── */
+
+.panel,
+.programCard,
+.storyCard,
+.quoteCard,
+.partnerCard,
+.documentPanel,
+.formPanel,
+.contactCard,
+.mapCard,
+.successStateCard,
+.errorStateCard,
+.featuredStoryPanel,
+.donationWizardCard {
+  background: white;
+  border: 1px solid rgba(194, 199, 206, 0.75);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+
+.panel,
+.formPanel,
+.documentPanel {
+  padding: 28px;
+}
+
+/* "Why This Matters" section header with amber dash like the reference design */
+.whyItMattersHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.whyItMattersHeader::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  flex-shrink: 0;
+  border-radius: 999px;
+}
+
+.whyItMattersHeader h2 {
+  font-size: 1.9rem;
+  color: var(--primary-soft);
+  font-weight: 700;
+}
+
+/* ─── How It Works — bento grid style ─────────────────── */
+
+.howItWorksBento {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.howItWorksCard {
+  background: white;
+  border: 1px solid rgba(194, 199, 206, 0.7);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  padding: 28px;
+  transition: box-shadow 220ms ease;
+}
+
+.howItWorksCard:hover {
+  box-shadow: var(--shadow-2);
+}
+
+.howItWorksCard.full {
+  grid-column: 1 / -1;
+  background: var(--tertiary-soft);
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.howItWorksCard.full h3,
+.howItWorksCard.full p {
+  color: white;
+}
+
+.howItWorksCard.full p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.howItWorksStepNum {
+  font-family: "Public Sans", Inter, Arial, sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px currentColor;
+  opacity: 0.35;
+  margin-bottom: 12px;
+}
+
+.howItWorksCard:not(.full) .howItWorksStepNum {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink-soft);
+}
+
+.howItWorksCard:not(.full):hover .howItWorksStepNum {
+  -webkit-text-stroke-color: var(--accent);
+  opacity: 0.6;
+  transition: -webkit-text-stroke-color 220ms ease, opacity 220ms ease;
+}
+
+.howItWorksCard.full .howItWorksStepNum {
+  -webkit-text-stroke-color: white;
+  opacity: 0.25;
+}
+
+.howItWorksCardMedia {
+  width: 220px;
+  height: 160px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.howItWorksCardMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Gallery ──────────────────────────────────────────── */
+
+/* Replaced old non-square gallery with square aspect-ratio tiles + hover scale */
+.galleryGrid {
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.galleryGrid img {
+  border-radius: var(--radius-md);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+  overflow: hidden;
+}
+
+.galleryItem {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.galleryItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 500ms ease;
+  display: block;
+}
+
+.galleryItem:hover img {
+  transform: scale(1.08);
+}
+
+/* ─── Donation Sidebar Widget ──────────────────────────── */
+
+.donationSidebarCard {
+  background: white;
+  border: 1px solid rgba(194, 199, 206, 0.75);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+}
+
+.donationSidebarHeader {
+  background: var(--primary-soft);
+  padding: 24px 28px;
+  color: white;
+}
+
+.donationSidebarHeader h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 6px;
+  font-family: "Public Sans", Inter, Arial, sans-serif;
+}
+
+.donationSidebarHeader p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.donationSidebarBody {
+  padding: 24px 28px;
+  display: grid;
+  gap: 20px;
+}
+
+.donationAmountLabel {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
+.donationAmountGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.donationAmountButton {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: white;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1rem;
+  min-height: 52px;
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+}
+
+.donationAmountButton:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.donationAmountButton.active {
+  border-color: var(--accent);
+  background: rgba(254, 166, 25, 0.06);
+  color: var(--secondary);
+}
+
+.donationCustomInput {
+  position: relative;
+}
+
+.donationCustomInput span {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.donationCustomInput input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  min-height: 52px;
+  padding: 0 14px 0 28px;
+  outline: none;
+  font-size: 1rem;
+  background: white;
+  color: var(--ink);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.donationCustomInput input:focus {
+  border-color: var(--primary-soft);
+  box-shadow: 0 0 0 4px rgba(11, 60, 93, 0.08);
+}
+
+.donationProgress {
+  display: grid;
+  gap: 8px;
+}
+
+.donationProgressMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.donationProgressMeta span:first-child {
+  color: var(--ink-soft);
+}
+
+.donationProgressMeta span:last-child {
+  color: var(--secondary);
+}
+
+.donationProgressTrack {
+  background: #e8eef8;
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.donationProgressFill {
+  background: var(--success);
+  height: 100%;
+  border-radius: 999px;
+  transition: width 600ms ease;
+}
+
+.donationSubmitBtn {
+  width: 100%;
+  background: var(--accent);
+  color: #2a1700;
+  font-weight: 800;
+  font-size: 1.05rem;
+  min-height: 56px;
+  border-radius: var(--radius-sm);
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(254, 166, 25, 0.3);
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+
+.donationSubmitBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(254, 166, 25, 0.4);
+}
+
+.donationSubmitBtn:active {
+  transform: scale(0.98);
+}
+
+.donationPaymentLogos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(194, 199, 206, 0.55);
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+.donationPaymentLogos span {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 3px 7px;
+}
+
+/* ─── Info Grid ────────────────────────────────────────── */
+
+.infoGrid.threeUp {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.trustPanel {
+  align-content: start;
+  display: grid;
+  gap: 14px;
+  text-align: center;
+}
+
+.trustIcon {
+  align-items: center;
+  background: var(--surface-mid);
+  border-radius: 999px;
+  color: var(--secondary);
+  display: inline-flex;
+  height: 52px;
+  justify-content: center;
+  justify-self: center;
+  width: 52px;
+}
+
+/* ─── Program Cards ────────────────────────────────────── */
+
+.programGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.programGrid.full {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.programCard {
+  display: grid;
+  overflow: hidden;
+}
+
+.programCardMedia {
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+
+.programCardMedia img,
+.storyCardMedia img,
+.partnerCardMedia img,
+.featuredStoryMedia img,
+.storyLeadImage,
+.mapCard img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.programBadge {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  color: var(--success);
+  display: inline-flex;
+  gap: 8px;
+  left: 16px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 16px;
+}
+
+.programCardBody,
+.storyCardBody,
+.partnerCardBody,
+.featuredStoryBody {
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+}
+
+.progressMeta {
+  color: var(--ink-soft);
+  justify-content: space-between;
+}
+
+.progressTrack,
+.barChartTrack {
+  background: #e8eef8;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressTrack {
+  height: 10px;
+}
+
+.progressFill {
+  background: var(--success);
+  height: 100%;
+}
+
+/* ─── Feature Grid ─────────────────────────────────────── */
+
+.featureGrid {
+  border-radius: 32px;
+  overflow: hidden;
+  grid-template-columns: 1fr 1fr;
+}
+
+.featureArt {
+  background:
+    radial-gradient(circle at 24% 24%, rgba(255, 255, 255, 0.85), transparent 28%),
+    linear-gradient(135deg, #0f3f67, #dce9ff 40%, #0a2740 80%);
+  min-height: 360px;
+}
+
+.featureStoryCard {
+  display: grid;
+  gap: 16px;
+  padding: 40px;
+}
+
+/* ─── Donate Zone ──────────────────────────────────────── */
+
+.donateZone {
+  background: var(--surface-high);
+}
+
+.donationWizardCard {
+  margin: 0 auto;
+  max-width: 980px;
+  padding: 28px;
+}
+
+.wizardStepper {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 24px;
+}
+
+.wizardStep {
+  gap: 8px;
+  justify-content: center;
+}
+
+.wizardStepDot {
+  align-items: center;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  display: inline-flex;
+  font-weight: 800;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
+.wizardStepDot.active {
+  border-color: var(--success);
+  color: var(--tertiary);
+}
+
+.sectionCopy {
+  display: grid;
+  gap: 12px;
+}
+
+.sectionCopy.centered {
+  justify-items: center;
+  text-align: center;
+}
+
+.toggleRow {
+  gap: 10px;
+  justify-content: center;
+}
+
+.toggleButton {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--primary-soft);
+  cursor: pointer;
+  min-height: 42px;
+  padding: 0 18px;
+}
+
+.toggleButton.active {
+  background: var(--primary-soft);
+  color: white;
+}
+
+.tierGrid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.tierCard {
+  background: white;
+  border: 2px solid var(--surface-mid);
+  border-radius: 18px;
+  cursor: pointer;
+  display: grid;
+  gap: 10px;
+  min-height: 140px;
+  padding: 20px;
+  text-align: left;
+}
+
+.tierCard strong {
+  color: var(--primary);
+  font-size: 1.4rem;
+}
+
+.tierCard span {
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.tierCard.active {
+  background: var(--surface-low);
+  border-color: var(--accent);
+}
+
+.impactNote {
+  align-items: center;
+  background: var(--surface-low);
+  border: 1px solid var(--surface-mid);
+  border-radius: 18px;
+  color: var(--primary);
+  display: flex;
+  gap: 10px;
+  padding: 16px 18px;
+}
+
+.stackForm {
+  display: grid;
+  gap: 18px;
+}
+
+.formGrid {
+  display: grid;
+  gap: 16px;
+}
+
+.formGrid.twoUp {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label {
+  color: var(--primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  min-height: 48px;
+  outline: none;
+  padding: 0 14px;
+}
+
+.field textarea {
+  min-height: 140px;
+  padding-top: 12px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.newsletterFields input:focus {
+  border-color: var(--primary-soft);
+  box-shadow: 0 0 0 4px rgba(11, 60, 93, 0.08);
+}
+
+.formActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+}
+
+.formActions.end {
+  align-items: center;
+}
+
+.formMeta {
+  align-items: center;
+  display: inline-flex;
+  gap: 6px;
+  min-height: 20px;
+}
+
+.availabilityGrid {
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.availabilityOption {
+  align-items: center;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 14px;
+}
+
+/* ─── Quotes ───────────────────────────────────────────── */
+
+.quoteGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.quoteCard {
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+}
+
+/* ─── Story Cards ──────────────────────────────────────── */
+
+.storyGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.storyGrid.full {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.storyCard {
+  overflow: hidden;
+}
+
+.storyCardMedia {
+  height: 240px;
+}
+
+.storyCardMeta {
+  color: var(--ink-soft);
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.storyCardBody a {
+  align-items: center;
+  color: var(--primary);
+  display: inline-flex;
+  font-weight: 800;
+  gap: 8px;
+}
+
+/* ─── Footer ───────────────────────────────────────────── */
+
+.siteFooter {
+  padding: 52px 0 24px;
+}
+
+/* Dark footer matches reference design: navy background, orange section labels */
+.siteFooter.dark {
+  background: var(--primary-soft);
+  color: white;
+}
+
+.siteFooter.light {
+  background: #f1f5fb;
+  border-top: 1px solid rgba(194, 199, 206, 0.65);
+}
+
+.footerGrid {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+}
+
+.footerGrid h2,
+.footerGrid h3 {
+  margin-bottom: 12px;
+}
+
+.siteFooter.dark h2,
+.siteFooter.dark h3,
+.siteFooter.dark a,
+.siteFooter.dark p,
+.siteFooter.dark span {
+  color: white;
+}
+
+/* Section labels in footer match the amber/orange accent from reference */
+.siteFooter.dark h3 {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent) !important;
+  margin-bottom: 12px;
+}
+
+.siteFooter.light h2,
+.siteFooter.light h3 {
+  color: var(--primary);
+}
+
+.footerGrid a,
+.footerGrid p {
+  display: block;
+  line-height: 1.65;
+  margin-bottom: 8px;
+}
+
+.footerSocials {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.footerSocials a {
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 34px;
+  justify-content: center;
+  width: 34px;
+}
+
+.siteFooter.light .footerSocials a {
+  border-color: rgba(11, 60, 93, 0.12);
+}
+
+.footerBottom {
+  border-top: 1px solid rgba(194, 199, 206, 0.35);
+  justify-content: space-between;
+  margin-top: 32px;
+  padding-top: 20px;
+}
+
+.footerBottom > div {
+  display: flex;
+  gap: 20px;
+}
+
+/* ─── Newsletter ───────────────────────────────────────── */
+
+.newsletterForm {
+  display: grid;
+  gap: 10px;
+}
+
+.newsletterFields {
+  gap: 10px;
+}
+
+.newsletterFields input {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  min-height: 44px;
+  outline: none;
+  padding: 0 12px;
+  width: 100%;
+}
+
+.newsletterForm.compact .newsletterFields {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+/* ─── Timeline ─────────────────────────────────────────── */
+
+.timeline {
+  display: grid;
+  gap: 18px;
+  margin: 0 auto;
+  max-width: 920px;
+}
+
+.timelineItem {
+  align-items: center;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 56px 1fr;
+}
+
+.timelineMarker {
+  align-items: center;
+  background: var(--surface-mid);
+  border-radius: 999px;
+  color: var(--secondary);
+  display: inline-flex;
+  height: 44px;
+  justify-content: center;
+  width: 44px;
+}
+
+.timelineCard {
+  background: white;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--secondary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+}
+
+.timelineCard span {
+  color: var(--secondary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* ─── Split Showcase ───────────────────────────────────── */
+
+.splitShowcase {
+  align-items: stretch;
+  gap: 24px;
+  grid-template-columns: 1.25fr 0.9fr;
+}
+
+.leadershipCard {
+  align-items: center;
+  border-radius: 24px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 240px 1fr;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.leadershipCard img {
+  border-radius: 20px;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* ─── Documents ────────────────────────────────────────── */
+
+.documentList {
+  gap: 12px;
+}
+
+.documentList a {
+  align-items: center;
+  background: rgba(11, 60, 93, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 54px;
+  padding: 0 16px;
+}
+
+/* ─── Contact ──────────────────────────────────────────── */
+
+.contactGrid,
+.partnerInquiryLayout,
+.volunteerFormLayout {
+  align-items: start;
+  gap: 24px;
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.contactColumn {
+  display: grid;
+  gap: 16px;
+}
+
+.contactCard {
+  align-items: start;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: auto 1fr;
+  padding: 18px;
+}
+
+.whatsappCard {
+  background: var(--success);
+  color: white;
+}
+
+.whatsappCard p,
+.whatsappCard h3 {
+  color: white;
+}
+
+.mapCard {
+  overflow: hidden;
+  position: relative;
+}
+
+.mapCard img {
+  min-height: 280px;
+}
+
+.mapBadge {
+  align-items: center;
+  background: white;
+  border-radius: 999px;
+  bottom: 16px;
+  box-shadow: var(--shadow-1);
+  display: inline-flex;
+  gap: 8px;
+  left: 16px;
+  padding: 10px 14px;
+  position: absolute;
+}
+
+/* ─── Bands & Panels ───────────────────────────────────── */
+
+.newsletterBand,
+.ctaBand,
+.reportsPanel,
+.partnerModes {
+  border-radius: 28px;
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+}
+
+.newsletterBand {
+  align-items: center;
+  background: white;
+  grid-template-columns: 1fr auto;
+}
+
+.planCard {
+  background: white;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: 20px;
+  box-shadow: var(--shadow-1);
+  display: grid;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+}
+
+/* ─── Blog / Story Layout ──────────────────────────────── */
+
+.blogLayout,
+.storyDetailGrid {
+  align-items: start;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.7fr);
+}
+
+.featuredStoryPanel {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.featuredStoryMedia {
+  min-height: 360px;
+}
+
+.featuredStoryBody {
+  align-content: center;
+}
+
+.blogSidebar,
+.storySidebar,
+.detailSidebar {
+  display: grid;
+  gap: 24px;
+}
+
+.sidebarPanel {
+  display: grid;
+  gap: 14px;
+}
+
+/* ─── Detail Layout ────────────────────────────────────── */
+
+.programHeroGrid,
+.detailGrid {
+  gap: 24px;
+}
+
+.detailGrid {
+  align-items: start;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+}
+
+.detailMain {
+  display: grid;
+  gap: 32px;
+}
+
+.copyStack {
+  display: grid;
+  gap: 16px;
+}
+
+/* Legacy stepsList kept for compatibility, but new designs use howItWorksBento */
+.stepsList {
+  display: grid;
+  gap: 16px;
+}
+
+.stepCard {
+  align-items: start;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: auto 1fr;
+}
+
+.stepCard > span {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: var(--accent);
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 800;
+  height: 42px;
+  justify-content: center;
+  padding-top: 10px;
+  width: 42px;
+}
+
+.stickyPanel {
+  position: sticky;
+  top: 96px;
+}
+
+/* ─── Story Hero ───────────────────────────────────────── */
+
+.storyHero {
+  background: white;
+  padding: 72px 0 40px;
+}
+
+.storyHeroShell {
+  justify-items: center;
+  max-width: 840px;
+  text-align: center;
+}
+
+.authorMeta {
+  color: var(--ink-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.storyBodyPanel {
+  display: grid;
+  gap: 24px;
+}
+
+.storyLeadImage {
+  border-radius: 24px;
+  height: 420px;
+}
+
+.storyBodyPanel blockquote {
+  border-left: 4px solid var(--accent);
+  color: var(--primary);
+  font-family: "Public Sans", Inter, Arial, sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  padding-left: 20px;
+}
+
+/* ─── Metrics ──────────────────────────────────────────── */
+
+.metricList {
+  display: grid;
+  gap: 12px;
+}
+
+.metricListRow {
+  justify-content: space-between;
+}
+
+.metricListRow span {
+  color: var(--ink-soft);
+}
+
+/* ─── Payment Flow ─────────────────────────────────────── */
+
+.paymentFlowGrid {
+  align-items: start;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+}
+
+.paymentMethodList {
+  display: grid;
+  gap: 14px;
+}
+
+.paymentMethod {
+  align-items: start;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  cursor: pointer;
+  gap: 14px;
+  padding: 16px;
+  text-align: left;
+}
+
+.paymentMethod.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(254, 166, 25, 0.14);
+}
+
+.paymentMethodIcon {
+  align-items: center;
+  background: var(--surface-low);
+  border-radius: 12px;
+  color: var(--primary);
+  display: inline-flex;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.paymentMethod strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.summaryPanel {
+  display: grid;
+  gap: 18px;
+}
+
+.summaryRows {
+  display: grid;
+  gap: 12px;
+}
+
+.summaryRows > div {
+  background: var(--surface-low);
+  border-radius: 16px;
+  justify-content: space-between;
+  padding: 14px 16px;
+}
+
+/* ─── Success / Error States ───────────────────────────── */
+
+.centeredStack {
+  display: grid;
+  justify-items: center;
+}
+
+.successStateCard,
+.errorStateCard {
+  display: grid;
+  gap: 18px;
+  max-width: 720px;
+  padding: 40px;
+  text-align: center;
+}
+
+.successIcon {
+  align-items: center;
+  background: rgba(16, 185, 129, 0.12);
+  border-radius: 999px;
+  color: var(--success);
+  display: inline-flex;
+  height: 64px;
+  justify-content: center;
+  justify-self: center;
+  width: 64px;
+}
+
+.successIcon.error {
+  background: rgba(186, 26, 26, 0.12);
+  color: var(--error);
+}
+
+.reasonList {
+  justify-self: stretch;
+  text-align: left;
+}
+
+/* ─── Dashboard ────────────────────────────────────────── */
+
+.chartPanel,
+.regionPanel {
+  display: grid;
+  gap: 18px;
+}
+
+.dashboardSplit {
+  gap: 24px;
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.barChart {
+  align-items: flex-end;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  height: 260px;
+}
+
+.barChartItem {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.barChartTrack {
+  align-items: flex-end;
+  display: flex;
+  height: 220px;
+  width: 100%;
+}
+
+.barChartFill {
+  background: linear-gradient(180deg, var(--primary-fixed), var(--primary-soft));
+  border-radius: 999px;
+  width: 100%;
+}
+
+.regionList {
+  display: grid;
+  gap: 14px;
+}
+
+/* ─── Partners ─────────────────────────────────────────── */
+
+.partnerGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.partnerCard {
+  overflow: hidden;
+}
+
+.partnerCardMedia {
+  height: 220px;
+}
+
+/* ─── Volunteer ────────────────────────────────────────── */
+
+.volunteerChecklist {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow-1);
+  display: grid;
+  gap: 16px;
+  padding: 28px;
+}
+
+/* ─── Responsive ───────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+  .homeHero,
+  .donateHero,
+  .volunteerHero,
+  .partnersHero,
+  .featureGrid,
+  .featuredStoryPanel,
+  .programHeroGrid,
+  .detailGrid,
+  .contactGrid,
+  .newsletterBand,
+  .paymentFlowGrid,
+  .blogLayout,
+  .storyDetailGrid,
+  .splitShowcase,
+  .volunteerFormLayout,
+  .partnerInquiryLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .detailSidebar .stickyPanel,
+  .stickyPanel {
+    position: static;
+  }
+
+  .programGrid,
+  .programGrid.full,
+  .storyGrid,
+  .quoteGrid,
+  .metricGrid,
+  .infoGrid.threeUp,
+  .partnerGrid,
+  .statGrid,
+  .dashboardSplit,
+  .footerGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  body {
+    padding-bottom: 78px;
+  }
+
+  .container {
+    width: min(100% - 32px, 1280px);
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .mobileOnly {
+    display: inline-flex;
+  }
+
+  .desktopOnly,
+  .navLinks {
+    display: none;
+  }
+
+  .heroSplit {
+    min-height: auto;
+  }
+
+  .heroPanel,
+  .featureStoryCard,
+  .heroBannerContent,
+  .donationWizardCard {
+    padding: 28px 24px;
+  }
+
+  .wizardStepper,
+  .tierGrid,
+  .galleryGrid,
+  .programGrid,
+  .programGrid.full,
+  .storyGrid,
+  .quoteGrid,
+  .metricGrid,
+  .infoGrid.threeUp,
+  .partnerGrid,
+  .footerGrid,
+  .formGrid.twoUp,
+  .availabilityGrid,
+  .statGrid,
+  .heroMetricRow,
+  .dashboardSplit,
+  .howItWorksBento,
+  .donationAmountGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .howItWorksCard.full {
+    grid-template-columns: 1fr;
+  }
+
+  .howItWorksCardMedia {
+    width: 100%;
+    height: 200px;
+  }
+
+  .storyGrid.full {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionHeader.split,
+  .footerBottom,
+  .formActions,
+  .newsletterFields {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mobileBottomNav {
+    display: flex;
+  }
+
+  .heroBanner,
+  .heroBannerContent {
+    min-height: 420px;
+  }
+
+  .heroMetricRow {
+    display: grid;
+  }
+
+  .heroMetricCard {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-right: 0;
+    padding: 12px 0;
+  }
+
+  .heroMetricCard:last-child {
+    border-bottom: none;
+  }
+
+  .leadershipCard {
+    grid-template-columns: 1fr;
+  }
+
+  .storyLeadImage {
+    height: 280px;
+  }
+}
+
+@media (max-width: 520px) {
+  .sectionHeader h1,
+  .sectionHeader h2,
+  .heroPanel h1,
+  .heroBannerContent h1,
+  .heroHeader h1,
+  .programHero h1,
+  .storyHeroShell h1,
+  .successStateCard h1,
+  .errorStateCard h1 {
+    font-size: 2rem;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  .button,
+  .toggleButton {
+    width: 100%;
+  }
+}

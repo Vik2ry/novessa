@@ -1,0 +1,43 @@
+[project]
+name = "novessa-django-api"
+version = "0.1.0"
+description = "Django backend for the Novessa Foundation impact portal"
+requires-python = ">=3.12"
+dependencies = [
+  "django>=5.1,<5.2",
+  "django-environ>=0.11.2",
+  "dj-database-url>=2.2.0",
+  "gunicorn>=23.0.0",
+  "pillow>=10.4.0",
+  "psycopg[binary]>=3.2.0",
+  "requests>=2.32.0",
+  "whitenoise>=6.7.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "black>=24.8.0",
+  "pytest>=8.3.0",
+  "pytest-cov>=5.0.0",
+  "pytest-django>=4.9.0",
+  "ruff>=0.6.0"
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py", "*_test.py"]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+extend-exclude = ["*/migrations/*"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.black]
+line-length = 120
+target-version = ["py312"]
