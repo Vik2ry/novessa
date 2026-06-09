@@ -1,14 +1,14 @@
 import logging
 from dataclasses import dataclass
 
-import requests
 from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 
 logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
-class MailgunMessage:
+class EmailMessage:
     to: str | list[str]
     subject: str
     text: str
@@ -17,53 +17,41 @@ class MailgunMessage:
     variables: dict | None = None
 
 
-class MailgunEmailService:
-    """Small Mailgun adapter modeled after Andromeda's email service boundary.
-
-    Mailgun differs from MessagePipe in one important way: this app sends fully
-    rendered messages to the Mailgun Messages API instead of sending a
-    provider-specific template ID plus variables. That keeps the templates in
-    the codebase/admin content and avoids binding Novessa to a dashboard-only
-    template system.
-    """
+class EmailService:
+    """Outbound email boundary backed by Django's configured email backend."""
 
     @classmethod
-    def send(cls, message: MailgunMessage) -> dict | None:
+    def send(cls, message: EmailMessage) -> dict | None:
         if settings.EMAIL_LOG_TO_CONSOLE:
             logger.warning("EMAIL_PREVIEW to=%s subject=%s", message.to, message.subject)
-        if not settings.MAILGUN_API_KEY or not settings.MAILGUN_DOMAIN:
-            logger.warning("Mailgun is not configured. Skipping outbound email.")
+            return None
+
+        if cls._smtp_backend_needs_credentials() and (
+            not settings.EMAIL_HOST_USER or not settings.EMAIL_HOST_PASSWORD
+        ):
+            logger.warning("SMTP email is not configured. Skipping outbound email.")
             return None
 
         recipients = message.to if isinstance(message.to, list) else [message.to]
-        data: dict[str, str | list[str]] = {
-            "from": settings.MAILGUN_FROM_EMAIL,
-            "to": recipients,
-            "subject": message.subject,
-            "text": message.text,
-        }
-        if message.html:
-            data["html"] = message.html
-        for tag in message.tags:
-            data.setdefault("o:tag", [])
-            data["o:tag"].append(tag)
-        if message.variables:
-            for key, value in message.variables.items():
-                data[f"v:{key}"] = str(value)
-
-        response = requests.post(
-            f"{settings.MAILGUN_BASE_URL}/{settings.MAILGUN_DOMAIN}/messages",
-            auth=("api", settings.MAILGUN_API_KEY),
-            data=data,
-            timeout=15,
+        email = EmailMultiAlternatives(
+            subject=message.subject,
+            body=message.text,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=recipients,
         )
-        response.raise_for_status()
-        return response.json()
+        if message.html:
+            email.attach_alternative(message.html, "text/html")
+        sent_count = email.send(fail_silently=False)
+        return {"sent": sent_count, "recipients": recipients, "tags": list(message.tags)}
+
+    @staticmethod
+    def _smtp_backend_needs_credentials() -> bool:
+        return settings.EMAIL_BACKEND == "django.core.mail.backends.smtp.EmailBackend"
 
     @classmethod
     def donation_receipt(cls, to_email: str, donor_name: str, amount_display: str, reference: str) -> dict | None:
         return cls.send(
-            MailgunMessage(
+            EmailMessage(
                 to=to_email,
                 subject="Thank you for supporting Novessa Foundation",
                 text=(
@@ -84,7 +72,7 @@ class MailgunEmailService:
     @classmethod
     def volunteer_confirmation(cls, to_email: str, full_name: str) -> dict | None:
         return cls.send(
-            MailgunMessage(
+            EmailMessage(
                 to=to_email,
                 subject="We received your Novessa volunteer application",
                 text=(
@@ -95,3 +83,7 @@ class MailgunEmailService:
                 tags=("volunteer",),
             )
         )
+
+
+MailgunMessage = EmailMessage
+MailgunEmailService = EmailService

@@ -9,6 +9,8 @@ env = Env(
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
     CSRF_TRUSTED_ORIGINS=(list, ["http://localhost:3000"]),
+    EMAIL_PORT=(int, 587),
+    EMAIL_USE_TLS=(bool, True),
 )
 
 env_file = PROJECT_ROOT / ".env"
@@ -108,6 +110,17 @@ MAILGUN_BASE_URL = env("MAILGUN_BASE_URL", default="https://api.mailgun.net/v3")
 MAILGUN_FROM_EMAIL = env("MAILGUN_FROM_EMAIL", default="Novessa Foundation <hello@novessa.org>")
 MAILGUN_WEBHOOK_SIGNING_KEY = env("MAILGUN_WEBHOOK_SIGNING_KEY", default="")
 EMAIL_LOG_TO_CONSOLE = env.bool("EMAIL_LOG_TO_CONSOLE", default=True)
+
+EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
+EMAIL_HOST = env("EMAIL_HOST", default="smtp.gmail.com")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_USE_TLS = env("EMAIL_USE_TLS")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default=env("MAIL_USERNAME", default=""))
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default=env("MAIL_PASSWORD", default=""))
+DEFAULT_FROM_EMAIL = env(
+    "DEFAULT_FROM_EMAIL",
+    default=env("MAIL_FROM_EMAIL", default="Novessa Foundation <hello@novessa.org>"),
+)
 
 ADMIN_SITE_HEADER = "Novessa Foundation Admin"
 ADMIN_SITE_TITLE = "Novessa Admin"
