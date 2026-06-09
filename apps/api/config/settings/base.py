@@ -13,9 +13,10 @@ env = Env(
     EMAIL_USE_TLS=(bool, True),
 )
 
-env_file = PROJECT_ROOT / ".env"
-if env_file.exists():
-    Env.read_env(env_file)
+for env_file in (BASE_DIR / ".env", PROJECT_ROOT / ".env"):
+    if env_file.exists():
+        Env.read_env(env_file)
+        break
 
 SECRET_KEY = env("SECRET_KEY", default="dev-only-change-me-in-production")
 DEBUG = env("DEBUG")
