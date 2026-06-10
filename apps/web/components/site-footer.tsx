@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Mail } from "lucide-react";
 import { NewsletterForm } from "@/components/newsletter-form";
@@ -10,7 +11,16 @@ export function SiteFooter({ variant = "dark" }: { variant?: "dark" | "light" })
     <footer className={variant === "dark" ? "siteFooter dark" : "siteFooter light"}>
       <div className="container footerGrid">
         <div className="footerBrandBlock">
-          <h2>Novessa Foundation</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+            <Image
+              src="/logo.jpeg"
+              alt="Novessa Foundation Logo"
+              width={50}
+              height={50}
+              style={{ width: 'auto', height: '50px', flexShrink: 0 }}
+            />
+            <h2 style={{ margin: 0, lineHeight: 1 }}>Novessa Foundation</h2>
+          </div>
           <p>{footer.summary}</p>
           <div className="footerSocials" aria-label="Social links">
             <a href="https://instagram.com/novessafoundation" rel="noreferrer" target="_blank">

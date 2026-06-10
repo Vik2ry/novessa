@@ -1,6 +1,7 @@
 "use client";
 
 import { Heart, Menu, Phone, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
@@ -33,7 +34,15 @@ export function SiteHeader({ activeHref }: { activeHref?: string }) {
             >
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
-            <Link className="brand" href="/">
+            <Link className="brand" href="/" style={{ display: 'flex', alignItems: 'center' }}>
+              <Image
+                src="/logo.jpeg"
+                alt="Novessa Foundation Logo"
+                width={40}
+                height={40}
+                priority
+                style={{ width: 'auto', height: '40px', marginRight: '8px' }}
+              />
               Novessa Foundation
             </Link>
           </div>
