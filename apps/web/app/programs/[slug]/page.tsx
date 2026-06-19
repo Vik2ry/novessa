@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { DonationForm } from "@/components/donation-form";
+// import { DonationForm } from "@/components/donation-form";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -10,7 +10,7 @@ import { getContentItem, getSitePayload } from "@/lib/api";
 export default async function ProgramDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const [site, program] = await Promise.all([getSitePayload(), getContentItem("program", slug)]);
-  const campaign = site.campaigns[0];
+  // const campaign = site.campaigns[0];
 
   if (!program) {
     notFound();
