@@ -7,10 +7,6 @@ services:
     buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
     startCommand: "python manage.py migrate && python manage.py create_admin && gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --worker-class sync --worker-tmp-dir /dev/shm --log-file -"
     healthCheckPath: /api/v1/health/
-    disk:
-      name: novessa-sqlite
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: config.settings.production
@@ -33,7 +29,7 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
       - key: DATABASE_URL
-        value: sqlite:////var/data/novessa.sqlite3
+        value: sqlite:///db.sqlite3
       # Email configuration - set these in Render dashboard
       - key: EMAIL_BACKEND
         value: django.core.mail.backends.smtp.EmailBackend

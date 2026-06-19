@@ -89,14 +89,10 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
-default_database_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
-if os.environ.get("RENDER"):
-    default_database_url = "sqlite:////var/data/novessa.sqlite3"
-
 DATABASES = {
     "default": env.db(
         "DATABASE_URL",
-        default=default_database_url,
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
     )
 }
 
