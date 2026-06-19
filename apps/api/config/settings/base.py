@@ -1,5 +1,5 @@
-from pathlib import Path
 import os
+from pathlib import Path
 
 from environ import Env
 
@@ -36,6 +36,10 @@ if os.environ.get("RENDER"):
             ALLOWED_HOSTS = list(ALLOWED_HOSTS) + [render_host]
 
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
+if os.environ.get("RENDER"):
+    render_external_url = os.environ.get("RENDER_EXTERNAL_URL", "").rstrip("/")
+    if render_external_url and render_external_url not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS = list(CSRF_TRUSTED_ORIGINS) + [render_external_url]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
