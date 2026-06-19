@@ -23,7 +23,7 @@ The project includes a `render.yaml` configuration file that automates the deplo
 
 ### Environment Variables to Set
 
-After Render creates the services, configure these environment variables in the Render dashboard under your `novessa-api` service settings:
+After Render creates the services, configure these environment variables in the Render dashboard under your `novessa` service settings:
 
 #### Email Configuration (Required for sending emails)
 - `EMAIL_HOST_USER`: Your Gmail address or email provider username
@@ -67,7 +67,7 @@ Static files are:
 The frontend can be deployed separately to Render or Vercel. Update the `NEXT_PUBLIC_API_BASE_URL` environment variable to point to your Render API:
 
 ```
-NEXT_PUBLIC_API_BASE_URL=https://novessa-api.onrender.com/api/v1
+NEXT_PUBLIC_API_BASE_URL=https://novessa.onrender.com/api/v1
 ```
 
 ## Troubleshooting
@@ -96,10 +96,10 @@ NEXT_PUBLIC_API_BASE_URL=https://novessa-api.onrender.com/api/v1
 ## Monitoring
 
 Access your API:
-- Production: `https://novessa-api.onrender.com`
-- API endpoint: `https://novessa-api.onrender.com/api/v1`
-- Health check: `https://novessa-api.onrender.com/api/v1/health/`
-- Admin panel: `https://novessa-api.onrender.com/admin/`
+- Production: `https://novessa.onrender.com`
+- API endpoint: `https://novessa.onrender.com/api/v1`
+- Health check: `https://novessa.onrender.com/api/v1/health/`
+- Admin panel: `https://novessa.onrender.com/admin/`
 
 View logs in the Render dashboard under your service's "Logs" tab.
 

@@ -73,9 +73,9 @@ MAILGUN_WEBHOOK_SIGNING_KEY = xxxxx
 
 ### Step 5: Verify Deployment
 1. Wait for build to complete (check logs)
-2. Visit health endpoint: `https://novessa-api.onrender.com/api/v1/health/`
+2. Visit health endpoint: `https://novessa.onrender.com/api/v1/health/`
 3. Should return: `{"status": "ok", "service": "novessa-django-api"}`
-4. Check admin panel: `https://novessa-api.onrender.com/admin/`
+4. Check admin panel: `https://novessa.onrender.com/admin/`
 5. Monitor logs for any errors
 
 ## Post-Deployment
@@ -83,7 +83,7 @@ MAILGUN_WEBHOOK_SIGNING_KEY = xxxxx
 ### 1. Update Frontend
 Update the frontend `NEXT_PUBLIC_API_BASE_URL` environment variable:
 ```
-NEXT_PUBLIC_API_BASE_URL=https://novessa-api.onrender.com/api/v1
+NEXT_PUBLIC_API_BASE_URL=https://novessa.onrender.com/api/v1
 ```
 
 ### 2. Configure Custom Domain

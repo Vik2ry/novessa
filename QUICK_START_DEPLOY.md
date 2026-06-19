@@ -21,13 +21,13 @@ git push origin main
 ### Then Create API Service
 1. Click "New +" → "Web Service"
 2. Select your GitHub repository
-3. **Name**: `novessa-api`
+3. **Name**: `novessa`
 4. **Runtime**: Python (auto-detected)
 5. **Root Directory**: `apps/api` (auto-detected from render.yaml)
 6. Click "Create Web Service"
 
 ## 3. Link Database to API
-1. Go to your `novessa-api` service
+1. Go to your `novessa` service
 2. Scroll to "Environment" section
 3. Find "PostgreSQL" section
 4. Click "Add Database" and select `novessa-postgres`
@@ -51,7 +51,7 @@ PAYSTACK_SECRET_KEY = sk_test_xxxxx
 - Check "Logs" tab to monitor
 
 ## 6. Test It Works
-Visit: `https://novessa-api.onrender.com/api/v1/health/`
+Visit: `https://novessa.onrender.com/api/v1/health/`
 
 Should return:
 ```json
@@ -61,7 +61,7 @@ Should return:
 ## 7. Update Frontend (When Ready)
 In `apps/web/.env`, update:
 ```
-NEXT_PUBLIC_API_BASE_URL=https://novessa-api.onrender.com/api/v1
+NEXT_PUBLIC_API_BASE_URL=https://novessa.onrender.com/api/v1
 ```
 
 Then deploy frontend to Vercel or Render.
