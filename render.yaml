@@ -22,6 +22,12 @@ services:
         value: https://novessa.org,https://www.novessa.org,https://novessa-web.vercel.app,https://www.novessa-web.vercel.app
       - key: FRONTEND_URL
         value: https://novessa.org
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_EMAIL
+        value: admin@novessa.org
+      - key: ADMIN_PASSWORD
+        sync: false
       - key: DATABASE_URL
         fromDatabase:
           name: novessa-postgres

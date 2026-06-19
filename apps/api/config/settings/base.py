@@ -140,3 +140,6 @@ DEFAULT_FROM_EMAIL = env(
 ADMIN_SITE_HEADER = "Novessa Foundation Admin"
 ADMIN_SITE_TITLE = "Novessa Admin"
 ADMIN_INDEX_TITLE = "Content, donations, and community operations"
+ADMIN_USERNAME = env("ADMIN_USERNAME", default="admin")
+ADMIN_EMAIL = env("ADMIN_EMAIL", default="admin@novessa.org")
+ADMIN_PASSWORD = env("ADMIN_PASSWORD", default="ChangeMe123!")
