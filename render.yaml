@@ -3,13 +3,14 @@ services:
     name: novessa-api
     runtime: python
     rootDir: apps/api
+    pythonVersion: 3.12
     buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
-    startCommand: "gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 3"
+    startCommand: "gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --worker-class sync --worker-tmp-dir /dev/shm --log-file -"
+    healthCheckPath: /api/v1/health/
+    preDeployCommand: "python manage.py migrate"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: config.settings.production
-      - key: PYTHON_VERSION
-        value: 3.12.6
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
@@ -17,12 +18,42 @@ services:
       - key: ALLOWED_HOSTS
         value: novessa-api.onrender.com,api.novessa.org
       - key: CSRF_TRUSTED_ORIGINS
-        value: https://novessa.org,https://www.novessa.org,https://api.novessa.org
+        value: https://novessa.org,https://www.novessa.org,https://api.novessa.org,https://novessa-web.vercel.app/,https://www.novessa-web.vercel.app/
       - key: CORS_ALLOWED_ORIGINS
-        value: https://novessa.org,https://www.novessa.org
+        value: https://novessa.org,https://www.novessa.org,https://novessa-web.vercel.app/,https://www.novessa-web.vercel.app/
       - key: FRONTEND_URL
-        value: https://novessa.org
+        value: https://novessa.org,https://novessa-web.vercel.app/
+      - key: DATABASE_URL
+        fromDatabase:
+          name: novessa-postgres
+          property: connectionString
+      # Email configuration - set these in Render dashboard
+      - key: EMAIL_BACKEND
+        value: django.core.mail.backends.smtp.EmailBackend
+      - key: EMAIL_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_PORT
+        value: "587"
+      - key: EMAIL_USE_TLS
+        value: "True"
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      # Paystack configuration - set these in Render dashboard
+      - key: PAYSTACK_PUBLIC_KEY
+        sync: false
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      # Mailgun configuration - set these in Render dashboard
+      - key: MAILGUN_API_KEY
+        sync: false
+      - key: MAILGUN_DOMAIN
+        sync: false
+      - key: MAILGUN_WEBHOOK_SIGNING_KEY
+        sync: false
 databases:
   - name: novessa-postgres
     plan: free
+    ipAllowList: []  # Allow all IPs from Render services
 
