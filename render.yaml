@@ -4,10 +4,9 @@ services:
     runtime: python
     rootDir: apps/api
     pythonVersion: 3.12
-    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
+    buildCommand: "pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py seed_novessa"
     startCommand: "gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --worker-class sync --worker-tmp-dir /dev/shm --log-file -"
     healthCheckPath: /api/v1/health/
-    preDeployCommand: "python manage.py migrate && python manage.py seed_novessa"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: config.settings.production
