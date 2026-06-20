@@ -8,7 +8,7 @@ from apps.mailer.services import EmailService
 def locmem_email(settings):
     settings.EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
     settings.EMAIL_LOG_TO_CONSOLE = False
-    settings.DEFAULT_FROM_EMAIL = "Novessa Foundation <hello@novessa.org>"
+    settings.DEFAULT_FROM_EMAIL = "Novessa Foundation <hello@novessafoundation.org.ng>"
     mail.outbox = []
 
 

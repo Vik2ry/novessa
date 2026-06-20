@@ -12,7 +12,7 @@
   - Reference: https://myaccount.google.com/apppasswords
 - [ ] Paystack account credentials (public & secret keys)
 - [ ] Mailgun account credentials (if using advanced email features) - optional
-- [ ] Domain name configured (api.novessa.org)
+- [ ] Domain name configured (api.novessafoundation.org.ng)
 
 ### 3. Infrastructure Review
 - [ ] Verify `render.yaml` exists in repository root ✓ (Already configured)
@@ -57,7 +57,7 @@ PAYSTACK_SECRET_KEY = sk_live_xxxxx (or sk_test_xxxxx for testing)
 **Optional - Mailgun Integration:**
 ```
 MAILGUN_API_KEY = key-xxxxx
-MAILGUN_DOMAIN = mg.novessa.org
+MAILGUN_DOMAIN = mg.novessafoundation.org.ng
 MAILGUN_WEBHOOK_SIGNING_KEY = xxxxx
 ```
 
@@ -89,7 +89,7 @@ NEXT_PUBLIC_API_BASE_URL=https://novessa-api.onrender.com/api/v1
 ### 2. Configure Custom Domain
 1. In Render, go to your API service
 2. Settings → "Custom Domain"
-3. Add `api.novessa.org`
+3. Add `api.novessafoundation.org.ng`
 4. Update DNS records as instructed by Render
 5. Wait for SSL certificate (automatic)
 

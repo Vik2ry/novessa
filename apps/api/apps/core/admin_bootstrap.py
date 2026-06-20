@@ -16,7 +16,7 @@ class AdminBootstrapResult:
 def ensure_admin_user() -> AdminBootstrapResult:
     """Ensure the deployment admin account can always sign into Django admin."""
     username = getattr(settings, "ADMIN_USERNAME", "admin") or "admin"
-    email = getattr(settings, "ADMIN_EMAIL", "admin@novessa.org") or "admin@novessa.org"
+    email = getattr(settings, "ADMIN_EMAIL", "admin@novessafoundation.org.ng") or "admin@novessafoundation.org.ng"
     password = getattr(settings, "ADMIN_PASSWORD", "ChangeMe123!") or "ChangeMe123!"
 
     User = get_user_model()

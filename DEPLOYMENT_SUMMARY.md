@@ -200,7 +200,7 @@ PAYSTACK_SECRET_KEY: sk_test_xxxxx
 
 # Optional
 MAILGUN_API_KEY: key-xxxxx
-MAILGUN_DOMAIN: mg.novessa.org
+MAILGUN_DOMAIN: mg.novessafoundation.org.ng
 MAILGUN_WEBHOOK_SIGNING_KEY: xxxxx
 ```
 

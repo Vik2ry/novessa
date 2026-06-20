@@ -7,7 +7,7 @@ from apps.core.admin_bootstrap import ensure_admin_user
 
 
 @pytest.mark.django_db
-@override_settings(ADMIN_USERNAME="admin", ADMIN_EMAIL="admin@novessa.org", ADMIN_PASSWORD="ChangeMe123!")
+@override_settings(ADMIN_USERNAME="admin", ADMIN_EMAIL="admin@novessafoundation.org.ng", ADMIN_PASSWORD="ChangeMe123!")
 def test_create_admin_command_repairs_existing_admin_account(client):
     User = get_user_model()
     user = User.objects.create_user(
@@ -22,7 +22,7 @@ def test_create_admin_command_repairs_existing_admin_account(client):
     call_command("create_admin")
 
     user.refresh_from_db()
-    assert user.email == "admin@novessa.org"
+    assert user.email == "admin@novessafoundation.org.ng"
     assert user.is_active is True
     assert user.is_staff is True
     assert user.is_superuser is True
@@ -32,7 +32,7 @@ def test_create_admin_command_repairs_existing_admin_account(client):
 
 
 @pytest.mark.django_db
-@override_settings(ADMIN_USERNAME="admin", ADMIN_EMAIL="admin@novessa.org", ADMIN_PASSWORD="")
+@override_settings(ADMIN_USERNAME="admin", ADMIN_EMAIL="admin@novessafoundation.org.ng", ADMIN_PASSWORD="")
 def test_admin_bootstrap_uses_safe_default_when_password_env_is_blank(client):
     result = ensure_admin_user()
 

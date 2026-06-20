@@ -15,17 +15,17 @@ services:
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: novessa-api.onrender.com,api.novessa.org,localhost,127.0.0.1
+        value: novessa-api.onrender.com,api.novessafoundation.org.ng,localhost,127.0.0.1
       - key: CSRF_TRUSTED_ORIGINS
-        value: https://novessa-api.onrender.com,https://novessa.org,https://www.novessa.org,https://api.novessa.org,https://novessa-web.vercel.app,https://www.novessa-web.vercel.app
+        value: https://novessa-api.onrender.com,https://novessafoundation.org.ng,https://www.novessafoundation.org.ng,https://api.novessafoundation.org.ng,https://novessa-web.vercel.app,https://www.novessa-web.vercel.app
       - key: CORS_ALLOWED_ORIGINS
-        value: https://novessa-api.onrender.com,https://novessa.org,https://www.novessa.org,https://api.novessa.org,https://novessa-web.vercel.app,https://www.novessa-web.vercel.app
+        value: https://novessa-api.onrender.com,https://novessafoundation.org.ng,https://www.novessafoundation.org.ng,https://api.novessafoundation.org.ng,https://novessa-web.vercel.app,https://www.novessa-web.vercel.app
       - key: FRONTEND_URL
-        value: https://novessa.org
+        value: https://novessafoundation.org.ng
       - key: ADMIN_USERNAME
         value: admin
       - key: ADMIN_EMAIL
-        value: admin@novessa.org
+        value: admin@novessafoundation.org.ng
       - key: ADMIN_PASSWORD
         sync: false
       - key: DATABASE_URL

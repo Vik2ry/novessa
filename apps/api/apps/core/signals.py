@@ -26,7 +26,7 @@ def create_admin_user(sender, **kwargs):
         # Create the admin superuser
         user = User.objects.create_superuser(
             username="admin",
-            email="admin@novessa.org",
+            email="admin@novessafoundation.org.ng",
             password="ChangeMe123!",
         )
         logger.info(f"✓ Created admin superuser: {user.username} (ID: {user.id})")

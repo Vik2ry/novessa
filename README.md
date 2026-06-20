@@ -51,7 +51,7 @@ https://<your-tunnel>/api/v1/donations/webhooks/paystack/
 For production on Render, use:
 
 ```text
-https://api.novessa.org/api/v1/donations/webhooks/paystack/
+https://api.novessafoundation.org.ng/api/v1/donations/webhooks/paystack/
 ```
 
 ### 4. Get Mailgun variables
@@ -59,16 +59,16 @@ https://api.novessa.org/api/v1/donations/webhooks/paystack/
 Mailgun is implemented directly through the Mailgun Messages API, not MessagePipe. The app sends rendered message content to Mailgun with optional tags and variables. There are no MessagePipe template IDs in this codebase.
 
 1. Create or log into Mailgun.
-2. Add a sending domain, ideally `mg.novessa.org`.
+2. Add a sending domain, ideally `mg.novessafoundation.org.ng`.
 3. Add the DNS records Mailgun gives you at your domain registrar.
 4. Copy your private API key into `MAILGUN_API_KEY`.
-5. Set `MAILGUN_DOMAIN=mg.novessa.org`.
-6. Set `MAILGUN_FROM_EMAIL=Novessa Foundation <hello@novessa.org>`.
+5. Set `MAILGUN_DOMAIN=mg.novessafoundation.org.ng`.
+6. Set `MAILGUN_FROM_EMAIL=Novessa Foundation <hello@novessafoundation.org.ng>`.
 7. In Mailgun webhook settings, copy the HTTP webhook signing key into `MAILGUN_WEBHOOK_SIGNING_KEY`.
 8. Add the production webhook URL:
 
 ```text
-https://api.novessa.org/api/v1/mailer/webhooks/mailgun/
+https://api.novessafoundation.org.ng/api/v1/mailer/webhooks/mailgun/
 ```
 
 ### 5. Create frontend environment file
@@ -116,7 +116,7 @@ cd apps/api
 black --check .
 ruff check .
 pytest --cov=apps --cov-report=term-missing
-DJANGO_SETTINGS_MODULE=config.settings.production SECRET_KEY=<long-secret> ALLOWED_HOSTS=api.novessa.org CSRF_TRUSTED_ORIGINS=https://novessa.org CORS_ALLOWED_ORIGINS=https://novessa.org python manage.py check --deploy
+DJANGO_SETTINGS_MODULE=config.settings.production SECRET_KEY=<long-secret> ALLOWED_HOSTS=api.novessafoundation.org.ng CSRF_TRUSTED_ORIGINS=https://novessafoundation.org.ng CORS_ALLOWED_ORIGINS=https://novessafoundation.org.ng python manage.py check --deploy
 ```
 
 Frontend:
@@ -154,19 +154,19 @@ DJANGO_SETTINGS_MODULE=config.settings.production
 SECRET_KEY=<Render generated secret>
 DEBUG=False
 DATABASE_URL=<Render PostgreSQL internal database URL>
-ALLOWED_HOSTS=api.novessa.org,<your-render-service>.onrender.com
-CSRF_TRUSTED_ORIGINS=https://novessa.org,https://www.novessa.org,https://api.novessa.org
-CORS_ALLOWED_ORIGINS=https://novessa.org,https://www.novessa.org
-FRONTEND_URL=https://novessa.org
+ALLOWED_HOSTS=api.novessafoundation.org.ng,<your-render-service>.onrender.com
+CSRF_TRUSTED_ORIGINS=https://novessafoundation.org.ng,https://www.novessafoundation.org.ng,https://api.novessafoundation.org.ng
+CORS_ALLOWED_ORIGINS=https://novessafoundation.org.ng,https://www.novessafoundation.org.ng
+FRONTEND_URL=https://novessafoundation.org.ng
 PAYSTACK_PUBLIC_KEY=<live public key>
 PAYSTACK_SECRET_KEY=<live secret key>
 MAILGUN_API_KEY=<private api key>
-MAILGUN_DOMAIN=mg.novessa.org
-MAILGUN_FROM_EMAIL=Novessa Foundation <hello@novessa.org>
+MAILGUN_DOMAIN=mg.novessafoundation.org.ng
+MAILGUN_FROM_EMAIL=Novessa Foundation <hello@novessafoundation.org.ng>
 MAILGUN_WEBHOOK_SIGNING_KEY=<mailgun signing key>
 ```
 
-8. Add a custom domain in Render: `api.novessa.org`.
+8. Add a custom domain in Render: `api.novessafoundation.org.ng`.
 9. Add the DNS record Render gives you at your registrar.
 10. Run `python manage.py createsuperuser` from Render Shell for the real admin account.
 
@@ -177,21 +177,21 @@ MAILGUN_WEBHOOK_SIGNING_KEY=<mailgun signing key>
 3. Set environment variables:
 
 ```env
-NEXT_PUBLIC_API_BASE_URL=https://api.novessa.org/api/v1
-NEXT_PUBLIC_SITE_URL=https://novessa.org
+NEXT_PUBLIC_API_BASE_URL=https://api.novessafoundation.org.ng/api/v1
+NEXT_PUBLIC_SITE_URL=https://novessafoundation.org.ng
 ```
 
 4. Deploy.
 5. Open **Project Settings → Domains**.
-6. Add `novessa.org` and `www.novessa.org`.
+6. Add `novessafoundation.org.ng` and `www.novessafoundation.org.ng`.
 7. At your DNS provider, add the Vercel records shown for the apex and `www` domain.
-8. Make `novessa.org` the primary domain so visitors do not see `novessa.vercel.app`.
+8. Make `novessafoundation.org.ng` the primary domain so visitors do not see `novessa.vercel.app`.
 
 ## Production Notes
 
 - Use Paystack live keys only after test donations and webhook verification pass.
 - Keep Django Admin behind strong passwords and staff-only accounts.
-- Use `mg.novessa.org` for Mailgun sending to protect the root domain reputation.
+- Use `mg.novessafoundation.org.ng` for Mailgun sending to protect the root domain reputation.
 - Start on free/low-cost Render and Vercel plans, then upgrade only when traffic, email volume, or database limits require it.
 - Keep all content edits inside Django Admin: programs, stories, campaigns, partners, forms, donations, Mailgun events, and webhook logs.
 
