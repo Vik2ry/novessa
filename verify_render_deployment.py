@@ -12,25 +12,25 @@ from pathlib import Path
 def check_file_exists(path, description):
     """Check if a required file exists."""
     if Path(path).exists():
-        print(f"✅ {description}: {path}")
+        print(f"[OK] {description}: {path}")
         return True
     else:
-        print(f"❌ {description} NOT FOUND: {path}")
+        print(f"[FAIL] {description} NOT FOUND: {path}")
         return False
 
 def check_file_contains(path, text, description):
     """Check if a file contains specific text."""
     if not Path(path).exists():
-        print(f"❌ File not found: {path}")
+        print(f"[FAIL] File not found: {path}")
         return False
     
     with open(path, 'r') as f:
         content = f.read()
         if text in content:
-            print(f"✅ {description}")
+            print(f"[OK] {description}")
             return True
         else:
-            print(f"❌ {description} - text not found: {text}")
+            print(f"[FAIL] {description} - text not found: {text}")
             return False
 
 def run_command(cmd, description):
@@ -38,14 +38,14 @@ def run_command(cmd, description):
     try:
         result = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd='apps/api')
         if result.returncode == 0:
-            print(f"✅ {description}")
+            print(f"[OK] {description}")
             return True
         else:
-            print(f"❌ {description} - Command failed:")
+            print(f"[FAIL] {description} - Command failed:")
             print(f"   Error: {result.stderr}")
             return False
     except Exception as e:
-        print(f"❌ {description} - Exception: {e}")
+        print(f"[FAIL] {description} - Exception: {e}")
         return False
 
 def main():
@@ -57,7 +57,7 @@ def main():
     checks_total = 0
     
     # Check 1: Required files exist
-    print("\n📋 Checking Required Files...")
+    print("\nChecking Required Files...")
     required_files = [
         ("render.yaml", "Render configuration"),
         ("apps/api/Dockerfile", "Docker configuration"),
@@ -73,13 +73,14 @@ def main():
             checks_passed += 1
     
     # Check 2: render.yaml configuration
-    print("\n⚙️  Checking render.yaml Configuration...")
+    print("\nChecking render.yaml Configuration...")
     render_yaml_checks = [
         ("apps/api", "API service root directory"),
         ("config.wsgi:application", "WSGI application"),
         ("gunicorn", "Gunicorn server"),
         ("novessa-postgres", "PostgreSQL database"),
-        ("preDeployCommand", "Pre-deploy migration command"),
+        ("fromDatabase", "PostgreSQL DATABASE_URL binding"),
+        ("python manage.py migrate", "Migration command"),
     ]
     
     for check_text, description in render_yaml_checks:
@@ -88,7 +89,7 @@ def main():
             checks_passed += 1
     
     # Check 3: Django settings
-    print("\n🔐 Checking Django Security Settings...")
+    print("\nChecking Django Security Settings...")
     production_checks = [
         ("DEBUG = False", "DEBUG disabled in production"),
         ("SECURE_SSL_REDIRECT", "SSL redirect enabled"),
@@ -102,7 +103,7 @@ def main():
             checks_passed += 1
     
     # Check 4: Database configuration
-    print("\n🗄️  Checking Database Configuration...")
+    print("\nChecking Database Configuration...")
     db_checks = [
         ("env.db(", "DATABASE_URL handling with env.db()"),
         ("dj-database-url", "dj-database-url in requirements"),
@@ -122,26 +123,26 @@ def main():
         checks_passed += 1
     
     # Check 5: Static files and WhiteNoise
-    print("\n📁 Checking Static Files Configuration...")
+    print("\nChecking Static Files Configuration...")
     static_checks = [
-        ("whitenoise", "WhiteNoise in requirements"),
-        ("STATIC_ROOT", "Static root configured"),
-        ("collectstatic", "Collectstatic in build command"),
+        ("apps/api/requirements.txt", "whitenoise", "WhiteNoise in requirements"),
+        ("apps/api/config/settings/base.py", "STATIC_ROOT", "Static root configured"),
+        ("render.yaml", "collectstatic", "Collectstatic in build command"),
     ]
     
-    for check_text, description in static_checks:
+    for file_path, check_text, description in static_checks:
         checks_total += 1
-        if check_file_contains("apps/api/requirements.txt", check_text, description) if "requirements" in check_text else check_file_contains("render.yaml", check_text, description):
+        if check_file_contains(file_path, check_text, description):
             checks_passed += 1
     
     # Check 6: Health check endpoint
-    print("\n❤️  Checking Health Check Endpoint...")
+    print("\nChecking Health Check Endpoint...")
     checks_total += 1
     if check_file_contains("apps/api/apps/core/urls.py", "health", "Health check endpoint"):
         checks_passed += 1
     
     # Check 7: Email configuration
-    print("\n📧 Checking Email Configuration...")
+    print("\nChecking Email Configuration...")
     email_checks = [
         ("EMAIL_BACKEND", "Email backend configured"),
         ("EMAIL_HOST", "Email host configured"),
@@ -159,13 +160,13 @@ def main():
     print("=" * 60)
     
     if checks_passed == checks_total:
-        print("✅ All checks passed! Backend is ready for Render deployment.")
+        print("[OK] All checks passed! Backend is ready for Render deployment.")
         print("\nNext steps:")
         print("1. Push code to GitHub: git push origin main")
         print("2. Follow QUICK_START_DEPLOY.md for deployment steps")
         return 0
     else:
-        print(f"⚠️  {checks_total - checks_passed} check(s) failed. Please review above.")
+        print(f"[WARN] {checks_total - checks_passed} check(s) failed. Please review above.")
         print("\nFor more details, see RENDER_DEPLOYMENT.md")
         return 1
 
