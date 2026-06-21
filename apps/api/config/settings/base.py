@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 from environ import Env
@@ -22,24 +21,8 @@ for env_file in (BASE_DIR / ".env", PROJECT_ROOT / ".env"):
 SECRET_KEY = env("SECRET_KEY", default="dev-only-change-me-in-production")
 DEBUG = env("DEBUG")
 
-# Parse ALLOWED_HOSTS and add Render domain if running on Render
-_allowed_hosts = env("ALLOWED_HOSTS")
-ALLOWED_HOSTS = _allowed_hosts
-
-# If running on Render (HOST environment variable is set), add it
-if os.environ.get("RENDER"):
-    render_external_url = os.environ.get("RENDER_EXTERNAL_URL", "")
-    if render_external_url:
-        # Extract just the hostname from the URL
-        render_host = render_external_url.replace("https://", "").replace("http://", "").rstrip("/")
-        if render_host and render_host not in ALLOWED_HOSTS:
-            ALLOWED_HOSTS = list(ALLOWED_HOSTS) + [render_host]
-
+ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
-if os.environ.get("RENDER"):
-    render_external_url = os.environ.get("RENDER_EXTERNAL_URL", "").rstrip("/")
-    if render_external_url and render_external_url not in CSRF_TRUSTED_ORIGINS:
-        CSRF_TRUSTED_ORIGINS = list(CSRF_TRUSTED_ORIGINS) + [render_external_url]
 
 INSTALLED_APPS = [
     "django.contrib.admin",

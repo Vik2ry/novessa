@@ -23,16 +23,16 @@ class Command(BaseCommand):
             # Check if user exists
             existing_user = User.objects.filter(username="admin").first()
             if existing_user:
-                self.stdout.write(self.style.WARNING(f"✓ Admin user already exists (ID: {existing_user.id})"))
+                self.stdout.write(self.style.WARNING(f"[OK] Admin user already exists (ID: {existing_user.id})"))
             else:
                 user = User.objects.create_superuser(
                     username="admin",
                     email="admin@novessafoundation.org.ng",
                     password="ChangeMe123!",
                 )
-                self.stdout.write(self.style.SUCCESS(f"✓ Created admin superuser (ID: {user.id}, Email: {user.email})"))
+                self.stdout.write(self.style.SUCCESS(f"[OK] Created admin superuser (ID: {user.id}, Email: {user.email})"))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f"✗ Error creating admin user: {e}"))
+            self.stdout.write(self.style.ERROR(f"[ERROR] Error creating admin user: {e}"))
             self.stdout.write(self.style.ERROR(traceback.format_exc()))
 
         # Step 2: Seed site settings
@@ -46,9 +46,9 @@ class Command(BaseCommand):
                 key="site_summary",
                 defaults={"label": "Site summary", "value": FALLBACK_SITE_SETTINGS},
             )
-            self.stdout.write(self.style.SUCCESS("✓ Seeded site settings"))
+            self.stdout.write(self.style.SUCCESS("[OK] Seeded site settings"))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f"✗ Error seeding site settings: {e}"))
+            self.stdout.write(self.style.ERROR(f"[ERROR] Error seeding site settings: {e}"))
             self.stdout.write(self.style.ERROR(traceback.format_exc()))
 
         # Step 3: Seed content items
@@ -73,11 +73,11 @@ class Command(BaseCommand):
                         },
                     )
                     total_items += 1
-            self.stdout.write(self.style.SUCCESS(f"✓ Seeded {total_items} content items"))
+            self.stdout.write(self.style.SUCCESS(f"[OK] Seeded {total_items} content items"))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f"✗ Error seeding content: {e}"))
+            self.stdout.write(self.style.ERROR(f"[ERROR] Error seeding content: {e}"))
             self.stdout.write(self.style.ERROR(traceback.format_exc()))
 
         self.stdout.write("\n" + "=" * 60)
-        self.stdout.write(self.style.SUCCESS("✓ Seeded Novessa starter data"))
+        self.stdout.write(self.style.SUCCESS("[OK] Seeded Novessa starter data"))
         self.stdout.write("=" * 60)

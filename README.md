@@ -48,10 +48,10 @@ CSRF_TRUSTED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
 https://<your-tunnel>/api/v1/donations/webhooks/paystack/
 ```
 
-For production on Render, use:
+For production on PythonAnywhere, use:
 
 ```text
-https://api.novessafoundation.org.ng/api/v1/donations/webhooks/paystack/
+https://novessa.pythonanywhere.com/api/v1/donations/webhooks/paystack/
 ```
 
 ### 4. Get Mailgun variables
@@ -68,7 +68,7 @@ Mailgun is implemented directly through the Mailgun Messages API, not MessagePip
 8. Add the production webhook URL:
 
 ```text
-https://api.novessafoundation.org.ng/api/v1/mailer/webhooks/mailgun/
+https://novessa.pythonanywhere.com/api/v1/mailer/webhooks/mailgun/
 ```
 
 ### 5. Create frontend environment file
@@ -116,7 +116,7 @@ cd apps/api
 black --check .
 ruff check .
 pytest --cov=apps --cov-report=term-missing
-DJANGO_SETTINGS_MODULE=config.settings.production SECRET_KEY=<long-secret> ALLOWED_HOSTS=api.novessafoundation.org.ng CSRF_TRUSTED_ORIGINS=https://novessafoundation.org.ng CORS_ALLOWED_ORIGINS=https://novessafoundation.org.ng python manage.py check --deploy
+DJANGO_SETTINGS_MODULE=config.settings.production SECRET_KEY=<long-secret> ALLOWED_HOSTS=novessa.pythonanywhere.com CSRF_TRUSTED_ORIGINS=https://novessa.pythonanywhere.com CORS_ALLOWED_ORIGINS=https://novessa.pythonanywhere.com python manage.py check --deploy
 ```
 
 Frontend:
@@ -129,46 +129,32 @@ npm run build:web
 
 ## Deployment: Cost-Effective Path
 
-### Backend on Render
+### Backend on PythonAnywhere
 
-1. Push the repo to GitHub.
-2. In Render, create a PostgreSQL database. The free plan is fine for early launch; move to the lowest paid plan before serious donor traffic.
-3. Create a Web Service from the same repo.
-4. Set root directory to `apps/api`.
-5. Build command:
+The backend is prepared for `https://novessa.pythonanywhere.com` using SQLite.
+
+Use [PYTHONANYWHERE_DEPLOYMENT.md](./PYTHONANYWHERE_DEPLOYMENT.md) for the full step-by-step deployment guide. The short version:
+
+1. Clone this repo to `/home/novessa/novessa` on PythonAnywhere.
+2. Create `/home/novessa/.virtualenvs/novessa-venv`.
+3. Install backend requirements from `/home/novessa/novessa/apps/api/requirements.txt`.
+4. Copy `apps/api/.env.pythonanywhere.example` to `apps/api/.env`.
+5. Set a real `SECRET_KEY`, `ADMIN_PASSWORD`, email credentials, Paystack keys, and Mailgun keys.
+6. Run:
 
 ```bash
-pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+cd /home/novessa/novessa/apps/api
+python manage.py migrate
+python manage.py seed_novessa
+python manage.py create_admin
+python manage.py collectstatic --noinput
+python manage.py check --deploy
 ```
 
-6. Start command:
-
-```bash
-gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 3
-```
-
-7. Set environment variables:
-
-```env
-DJANGO_SETTINGS_MODULE=config.settings.production
-SECRET_KEY=<Render generated secret>
-DEBUG=False
-DATABASE_URL=<Render PostgreSQL internal database URL>
-ALLOWED_HOSTS=api.novessafoundation.org.ng,<your-render-service>.onrender.com
-CSRF_TRUSTED_ORIGINS=https://novessafoundation.org.ng,https://www.novessafoundation.org.ng,https://api.novessafoundation.org.ng
-CORS_ALLOWED_ORIGINS=https://novessafoundation.org.ng,https://www.novessafoundation.org.ng
-FRONTEND_URL=https://novessafoundation.org.ng
-PAYSTACK_PUBLIC_KEY=<live public key>
-PAYSTACK_SECRET_KEY=<live secret key>
-MAILGUN_API_KEY=<private api key>
-MAILGUN_DOMAIN=mg.novessafoundation.org.ng
-MAILGUN_FROM_EMAIL=Novessa Foundation <hello@novessafoundation.org.ng>
-MAILGUN_WEBHOOK_SIGNING_KEY=<mailgun signing key>
-```
-
-8. Add a custom domain in Render: `api.novessafoundation.org.ng`.
-9. Add the DNS record Render gives you at your registrar.
-10. Run `python manage.py createsuperuser` from Render Shell for the real admin account.
+7. Create a manual PythonAnywhere web app for `novessa.pythonanywhere.com`.
+8. Set the WSGI file from `pythonanywhere_wsgi.py`.
+9. Map `/static/` to `/home/novessa/novessa/apps/api/staticfiles`.
+10. Reload the web app and sign in at `https://novessa.pythonanywhere.com/admin/`.
 
 ### Frontend on Vercel
 
@@ -177,7 +163,7 @@ MAILGUN_WEBHOOK_SIGNING_KEY=<mailgun signing key>
 3. Set environment variables:
 
 ```env
-NEXT_PUBLIC_API_BASE_URL=https://api.novessafoundation.org.ng/api/v1
+NEXT_PUBLIC_API_BASE_URL=https://novessa.pythonanywhere.com/api/v1
 NEXT_PUBLIC_SITE_URL=https://novessafoundation.org.ng
 ```
 
@@ -192,6 +178,5 @@ NEXT_PUBLIC_SITE_URL=https://novessafoundation.org.ng
 - Use Paystack live keys only after test donations and webhook verification pass.
 - Keep Django Admin behind strong passwords and staff-only accounts.
 - Use `mg.novessafoundation.org.ng` for Mailgun sending to protect the root domain reputation.
-- Start on free/low-cost Render and Vercel plans, then upgrade only when traffic, email volume, or database limits require it.
+- SQLite is acceptable on PythonAnywhere for a small, low-write backend. Move to MySQL/PostgreSQL when admin activity, donations, or webhook traffic grows.
 - Keep all content edits inside Django Admin: programs, stories, campaigns, partners, forms, donations, Mailgun events, and webhook logs.
-
