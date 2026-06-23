@@ -52,12 +52,28 @@ export default function AboutPage() {
             />
           </div>
           <div className="container heroBannerContent centered">
-            <p className="eyebrow">Our Story</p>
-            <h1>We exist because people deserve better.</h1>
+            <p className="eyebrow">About Us</p>
+            <h1>Novessa Empowerment Foundation</h1>
             <p>
-              Novessa Foundation was created to challenge the silence surrounding mental health and to expand access to
-              opportunity through education, skills, and community support.
+              Transforming lives through mental health advocacy, education, community development, and empowerment initiatives across Nigeria.
             </p>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="contentBlock">
+              <h2>Who We Are</h2>
+              <p>
+                Novessa Empowerment Foundation is a non-profit organization dedicated to transforming lives through mental health advocacy, education, community development, and empowerment initiatives across Nigeria. We believe that every individual deserves the opportunity to thrive, regardless of their background, circumstances, or challenges.
+              </p>
+              <p>
+                Founded with a passion for creating positive social impact, our foundation works to address critical issues affecting vulnerable individuals and communities, particularly in the areas of mental health awareness, youth development, educational support, and social inclusion. Through outreach programs, advocacy campaigns, training workshops, and strategic partnerships, we strive to break barriers, reduce stigma, and provide practical support that empowers people to reach their full potential.
+              </p>
+              <p>
+                At Novessa Empowerment Foundation, we recognize that mental well-being is essential to personal and community growth. Mental health challenges remain highly stigmatized across many communities, limiting access to support and care. Our work is therefore focused on raising awareness, promoting mental health literacy, encouraging early intervention, and connecting individuals with appropriate resources and support systems. These approaches align with broader efforts by mental health organizations across Nigeria and Africa to improve awareness, reduce stigma, and strengthen community support systems.
+              </p>
+            </div>
           </div>
         </section>
 
