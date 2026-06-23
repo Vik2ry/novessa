@@ -33,7 +33,7 @@ If Python 3.12 is not available on your account, choose the newest Python versio
 Create the production env file:
 
 ```bash
-cd /home/novessa/novessa/apps/api
+cd /home/novessa/novessa1/apps/api
 cp .env.pythonanywhere.example .env
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 nano .env
@@ -51,7 +51,7 @@ ALLOWED_HOSTS=novessa.pythonanywhere.com
 CSRF_TRUSTED_ORIGINS=https://novessa.pythonanywhere.com
 CORS_ALLOWED_ORIGINS=https://novessa.pythonanywhere.com
 FRONTEND_URL=https://novessa.pythonanywhere.com
-DATABASE_URL=sqlite:////home/novessa/novessa/apps/api/db.sqlite3
+DATABASE_URL=sqlite:////home/novessa/novessa1/apps/api/db.sqlite3
 ADMIN_USERNAME=admin
 ADMIN_EMAIL=segunbanji@gmail.com
 ADMIN_PASSWORD=<strong-password>
@@ -62,7 +62,7 @@ ADMIN_PASSWORD=<strong-password>
 Run:
 
 ```bash
-cd /home/novessa/novessa/apps/api
+cd /home/novessa/novessa1/apps/api
 python manage.py migrate
 python manage.py seed_novessa
 python manage.py create_admin
@@ -81,7 +81,7 @@ In PythonAnywhere:
 3. Choose **Manual configuration**.
 4. Choose the same Python version used for the virtualenv.
 5. Set **Virtualenv** to `/home/novessa/.virtualenvs/novessa-venv`.
-6. Set **Source code** and **Working directory** to `/home/novessa/novessa/apps/api`.
+6. Set **Source code** and **Working directory** to `/home/novessa/novessa1/apps/api`.
 
 ## 5. Configure The WSGI File
 
@@ -91,12 +91,12 @@ Open the WSGI file link in the Web tab:
 /var/www/novessa_pythonanywhere_com_wsgi.py
 ```
 
-Replace its contents with the contents of `/home/novessa/novessa/pythonanywhere_wsgi.py`.
+Replace its contents with the contents of `/home/novessa/novessa1/pythonanywhere_wsgi.py`.
 
 The important values are:
 
 ```python
-API_ROOT = "/home/novessa/novessa/apps/api"
+API_ROOT = "/home/novessa/novessa1/apps/api"
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 ```
 
@@ -106,14 +106,14 @@ In the Web tab, add static file mappings:
 
 ```text
 URL: /static/
-Directory: /home/novessa/novessa/apps/api/staticfiles
+Directory: /home/novessa/novessa1/apps/api/staticfiles
 ```
 
 Optional, if uploads/media are used:
 
 ```text
 URL: /media/
-Directory: /home/novessa/novessa/apps/api/media
+Directory: /home/novessa/novessa1/apps/api/media
 ```
 
 Click **Reload** for the web app.
@@ -139,10 +139,10 @@ If the page errors, check the error log link in the PythonAnywhere Web tab.
 ## Updating Later
 
 ```bash
-cd /home/novessa/novessa
+cd /home/novessa/novessa1
 git pull
 workon novessa-venv
-cd /home/novessa/novessa/apps/api
+cd /home/novessa/novessa1/apps/api
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py collectstatic --noinput
