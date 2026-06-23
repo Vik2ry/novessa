@@ -63,7 +63,7 @@ Mailgun is implemented directly through the Mailgun Messages API, not MessagePip
 3. Add the DNS records Mailgun gives you at your domain registrar.
 4. Copy your private API key into `MAILGUN_API_KEY`.
 5. Set `MAILGUN_DOMAIN=mg.novessafoundation.org.ng`.
-6. Set `MAILGUN_FROM_EMAIL=Novessa Foundation <hello@novessafoundation.org.ng>`.
+6. Set `MAILGUN_FROM_EMAIL=Novessa Foundation <support@novessafoundation.org.ng>`.
 7. In Mailgun webhook settings, copy the HTTP webhook signing key into `MAILGUN_WEBHOOK_SIGNING_KEY`.
 8. Add the production webhook URL:
 

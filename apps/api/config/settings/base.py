@@ -109,7 +109,7 @@ PAYSTACK_BASE_URL = env("PAYSTACK_BASE_URL", default="https://api.paystack.co")
 MAILGUN_API_KEY = env("MAILGUN_API_KEY", default="")
 MAILGUN_DOMAIN = env("MAILGUN_DOMAIN", default="")
 MAILGUN_BASE_URL = env("MAILGUN_BASE_URL", default="https://api.mailgun.net/v3")
-MAILGUN_FROM_EMAIL = env("MAILGUN_FROM_EMAIL", default="Novessa Foundation <hello@novessafoundation.org.ng>")
+MAILGUN_FROM_EMAIL = env("MAILGUN_FROM_EMAIL", default="Novessa Foundation <support@novessafoundation.org.ng>")
 MAILGUN_WEBHOOK_SIGNING_KEY = env("MAILGUN_WEBHOOK_SIGNING_KEY", default="")
 EMAIL_LOG_TO_CONSOLE = env.bool("EMAIL_LOG_TO_CONSOLE", default=True)
 
@@ -121,7 +121,7 @@ EMAIL_HOST_USER = env("EMAIL_HOST_USER", default=env("MAIL_USERNAME", default=""
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default=env("MAIL_PASSWORD", default=""))
 DEFAULT_FROM_EMAIL = env(
     "DEFAULT_FROM_EMAIL",
-    default=env("MAIL_FROM_EMAIL", default="Novessa Foundation <hello@novessafoundation.org.ng>"),
+    default=env("MAIL_FROM_EMAIL", default="Novessa Foundation <support@novessafoundation.org.ng>"),
 )
 
 ADMIN_SITE_HEADER = "Novessa Foundation Admin"
