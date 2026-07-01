@@ -43,7 +43,7 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader activeHref="/about" />
-      <main className="pageSurface">
+      <main className="pageSurface aboutPage">
         <section className="heroBanner dark">
           <div className="heroBackdrop">
             <img
@@ -122,14 +122,16 @@ export default function AboutPage() {
         <section className="section">
           <div className="container splitShowcase">
             <div className="leadershipCard dark">
-              <img
-                alt="Samson Adedeji"
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80"
-              />
-              <div>
+              <div className="leaderPhoto">
+                <img
+                  alt="Samson Adedeji"
+                  src="/founder.jpeg"
+                />
+              </div>
+              <div className="leaderDetails">
                 <p className="eyebrow">Founder & Executive Director</p>
                 <h2>Samson Adedeji</h2>
-                <p>
+                <p className="leaderBio">
                   Samson is a health and social care professional currently gaining clinical exposure within ADHD and
                   Autism services, with a strong interest in mental health nursing and person-centred care.
                 </p>

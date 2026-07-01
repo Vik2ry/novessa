@@ -361,10 +361,16 @@ button {
   transition: transform 220ms ease;
   width: min(88vw, 360px);
   z-index: 80;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .mobileDrawer.open {
   transform: translateX(0);
+}
+
+body.mobileDrawerOpen {
+  overflow: hidden;
 }
 
 .mobileDrawerHeader,
@@ -1806,11 +1812,51 @@ button {
   padding: 24px;
 }
 
-.leadershipCard img {
+.leaderPhoto {
   border-radius: 20px;
+  min-height: 320px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.leaderPhoto img {
   height: 100%;
   object-fit: cover;
   width: 100%;
+}
+
+.leaderDetails h2 {
+  font-family: "Public Sans", Inter, Arial, sans-serif;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  line-height: 1.05;
+}
+
+.leaderBio {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.aboutPage .contentBlock {
+  display: grid;
+  gap: 24px;
+}
+
+.aboutPage .contentBlock p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+.aboutPage .sectionHeader h2 {
+  font-family: "Public Sans", Inter, Arial, sans-serif;
+  font-size: clamp(2.2rem, 3.2vw, 3rem);
+}
+
+.aboutPage .sectionHeader p,
+.aboutPage .heroBannerContent p {
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
 /* ─── Documents ────────────────────────────────────────── */

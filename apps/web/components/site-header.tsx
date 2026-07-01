@@ -4,7 +4,7 @@ import { Heart, Menu, Phone, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { mobileNavigationLinks, navigationLinks } from "@/lib/api";
 
 export function SiteHeader({ activeHref }: { activeHref?: string }) {
@@ -19,6 +19,13 @@ export function SiteHeader({ activeHref }: { activeHref?: string }) {
     ],
     []
   );
+
+  useEffect(() => {
+    document.body.classList.toggle("mobileDrawerOpen", open);
+    return () => {
+      document.body.classList.remove("mobileDrawerOpen");
+    };
+  }, [open]);
 
   return (
     <>
