@@ -21,9 +21,15 @@ export function SiteHeader({ activeHref }: { activeHref?: string }) {
   );
 
   useEffect(() => {
-    document.body.classList.toggle("mobileDrawerOpen", open);
+    const body = globalThis.document?.body;
+
+    if (!body) {
+      return;
+    }
+
+    body.classList.toggle("mobileDrawerOpen", open);
     return () => {
-      document.body.classList.remove("mobileDrawerOpen");
+      body.classList.remove("mobileDrawerOpen");
     };
   }, [open]);
 
