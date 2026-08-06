@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+
+export const metadata: Metadata = {
+  title: "Application Received | Novessa Foundation",
+  robots: { index: false, follow: false }
+};
 
 export default function VolunteerSuccessPage() {
   return (

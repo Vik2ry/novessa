@@ -1,11 +1,39 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 // import { DonationForm } from "@/components/donation-form";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
+import { RichText } from "@/components/rich-text";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getContentItem, getSitePayload } from "@/lib/api";
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const program = await getContentItem("program", slug);
+
+  if (!program) {
+    return { title: "Program Not Found | Novessa Foundation" };
+  }
+
+  const title = `${program.title} | Novessa Foundation`;
+  return {
+    title,
+    description: program.summary,
+    alternates: { canonical: `/programs/${slug}` },
+    openGraph: {
+      title,
+      description: program.summary,
+      url: `/programs/${slug}`,
+      images: program.imageUrl ? [{ url: program.imageUrl }] : undefined
+    }
+  };
+}
 
 export default async function ProgramDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -17,7 +45,8 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
   }
 
   const heroMetrics = (program.metadata.heroMetrics as { label: string; value: string }[] | undefined) ?? [];
-  const whyItMatters = (program.metadata.whyItMatters as string[] | undefined) ?? [];
+  const whyItMatters =
+    (program.metadata.whyItMatters as string[] | undefined) ?? (program.body ? [program.body] : []);
   const howItWorks =
     (program.metadata.howItWorks as { title: string; body: string }[] | undefined) ?? [];
   const gallery = (program.metadata.gallery as string[] | undefined) ?? [];
@@ -94,10 +123,8 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
                   <h2>Why This Matters</h2>
                 </div>
                 <div className="copyStack">
-                  {whyItMatters.map((paragraph) => (
-                    <p key={paragraph} style={{ fontSize: "1.05rem", lineHeight: "1.7" }}>
-                      {paragraph}
-                    </p>
+                  {whyItMatters.map((paragraph, index) => (
+                    <RichText key={index} html={paragraph} className="richText" />
                   ))}
                 </div>
               </div>

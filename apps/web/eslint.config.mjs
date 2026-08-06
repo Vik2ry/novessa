@@ -22,6 +22,7 @@ export default [
         window: "readonly",
         FormData: "readonly",
         HTMLFormElement: "readonly",
+        URL: "readonly",
         URLSearchParams: "readonly",
         fetch: "readonly",
         console: "readonly",

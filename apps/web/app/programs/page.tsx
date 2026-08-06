@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ArrowRight, Search } from "lucide-react";
 import Link from "next/link";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
@@ -5,6 +6,19 @@ import { ProgramCard } from "@/components/program-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getSitePayload } from "@/lib/api";
+
+export const metadata: Metadata = {
+  title: "Our Programs | Novessa Foundation",
+  description:
+    "Explore Novessa Foundation's strategic initiatives in mental health, education, vocational skills, outreach, neurodiversity support, and women's leadership across Nigeria.",
+  alternates: { canonical: "/programs" },
+  openGraph: {
+    title: "Our Programs | Novessa Foundation",
+    description:
+      "Explore Novessa Foundation's strategic initiatives in mental health, education, vocational skills, outreach, neurodiversity support, and women's leadership across Nigeria.",
+    url: "/programs"
+  }
+};
 
 export default async function ProgramsPage() {
   const site = await getSitePayload();

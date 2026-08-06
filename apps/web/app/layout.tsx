@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://novessafoundation.org.ng";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Novessa Foundation | Empowering Nigerian Communities",
   description:
     "Novessa Foundation promotes mental wellbeing and quality education for youth, women, neurodivergent people, and vulnerable communities across Nigeria.",

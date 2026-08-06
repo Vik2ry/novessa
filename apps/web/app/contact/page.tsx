@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Mail, MapPin, MessageCircle } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
@@ -5,6 +6,19 @@ import { NewsletterForm } from "@/components/newsletter-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getSitePayload } from "@/lib/api";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Novessa Foundation",
+  description:
+    "Get in touch with Novessa Foundation — reach our team in Lagos, Nigeria by phone, email, or the contact form for partnerships, support, or media inquiries.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Us | Novessa Foundation",
+    description:
+      "Get in touch with Novessa Foundation — reach our team in Lagos, Nigeria by phone, email, or the contact form for partnerships, support, or media inquiries.",
+    url: "/contact"
+  }
+};
 
 export default async function ContactPage() {
   const site = await getSitePayload();

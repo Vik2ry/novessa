@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { AlertCircle, RefreshCcw } from "lucide-react";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+
+export const metadata: Metadata = {
+  title: "Donation Issue | Novessa Foundation",
+  robots: { index: false, follow: false }
+};
 
 type SearchProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
@@ -5,6 +6,19 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StoryCard } from "@/components/story-card";
 import { getSitePayload } from "@/lib/api";
+
+export const metadata: Metadata = {
+  title: "Our Impact | Novessa Foundation",
+  description:
+    "See the measurable impact of Novessa Foundation's work across Nigeria — funds raised, lives reached, and communities supported.",
+  alternates: { canonical: "/impact" },
+  openGraph: {
+    title: "Our Impact | Novessa Foundation",
+    description:
+      "See the measurable impact of Novessa Foundation's work across Nigeria — funds raised, lives reached, and communities supported.",
+    url: "/impact"
+  }
+};
 
 export default async function ImpactPage() {
   const site = await getSitePayload();

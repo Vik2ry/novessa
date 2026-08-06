@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | Novessa Foundation",
+  description: "Read the terms of service for using the Novessa Foundation website and donation platform.",
+  alternates: { canonical: "/terms" },
+  robots: { index: true, follow: true }
+};
 
 export default function TermsPage() {
   return (

@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import { DonationPaymentSelector } from "@/components/donation-payment-selector";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getDonation } from "@/lib/api";
+
+export const metadata: Metadata = {
+  title: "Complete Your Donation | Novessa Foundation",
+  robots: { index: false, follow: false }
+};
 
 type SearchProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
