@@ -1,7 +1,21 @@
+import type { Metadata } from "next";
 import { BadgeCheck, CircleDot, HeartHandshake, Target } from "lucide-react";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+
+export const metadata: Metadata = {
+  title: "About Us | Novessa Foundation",
+  description:
+    "Learn the story behind Novessa Foundation and how we support mental wellbeing, education, and skills development for vulnerable communities across Nigeria.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Us | Novessa Foundation",
+    description:
+      "Learn the story behind Novessa Foundation and how we support mental wellbeing, education, and skills development for vulnerable communities across Nigeria.",
+    url: "/about"
+  }
+};
 
 const values = [
   {

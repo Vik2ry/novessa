@@ -1,9 +1,23 @@
+import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import { PartnerForm } from "@/components/partner-form";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getSitePayload } from "@/lib/api";
+
+export const metadata: Metadata = {
+  title: "Our Partners | Novessa Foundation",
+  description:
+    "Meet the organizations partnering with Novessa Foundation on payments, logistics, healthcare, and technology to expand our reach across Nigeria.",
+  alternates: { canonical: "/partners" },
+  openGraph: {
+    title: "Our Partners | Novessa Foundation",
+    description:
+      "Meet the organizations partnering with Novessa Foundation on payments, logistics, healthcare, and technology to expand our reach across Nigeria.",
+    url: "/partners"
+  }
+};
 
 export default async function PartnersPage() {
   const site = await getSitePayload();

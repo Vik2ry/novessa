@@ -1,9 +1,23 @@
+import type { Metadata } from "next";
 import { CheckCircle2, LockKeyhole, Repeat2 } from "lucide-react";
 import { DonationForm } from "@/components/donation-form";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getSitePayload } from "@/lib/api";
+
+export const metadata: Metadata = {
+  title: "Donate | Novessa Foundation",
+  description:
+    "Make a one-time or monthly donation to Novessa Foundation and directly fund mental health, education, and community programs across Nigeria.",
+  alternates: { canonical: "/donate" },
+  openGraph: {
+    title: "Donate | Novessa Foundation",
+    description:
+      "Make a one-time or monthly donation to Novessa Foundation and directly fund mental health, education, and community programs across Nigeria.",
+    url: "/donate"
+  }
+};
 
 export default async function DonatePage() {
   const site = await getSitePayload();

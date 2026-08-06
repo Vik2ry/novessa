@@ -1,38 +1,58 @@
+import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { FileText, Download } from "lucide-react";
 
+export const metadata: Metadata = {
+  title: "Annual Reports & Documentation | Novessa Foundation",
+  description:
+    "Access Novessa Foundation's annual reports, financial audits, and governance documents for full transparency and accountability.",
+  alternates: { canonical: "/reports" },
+  openGraph: {
+    title: "Annual Reports & Documentation | Novessa Foundation",
+    description:
+      "Access Novessa Foundation's annual reports, financial audits, and governance documents for full transparency and accountability.",
+    url: "/reports"
+  }
+};
+
+// TODO(backend): these four reports are still hardcoded here because there is no
+// Report model/media library on the Django backend yet. Until real PDF files are
+// uploaded and served from the API, each "Download" button opens a pre-filled
+// email request instead of a dead "#" link, so nothing on this page is a broken link.
 export default function ReportsPage() {
+  const reportsEmail = "hello@novessafoundation.org";
   const reports = [
     {
       title: "2023 Annual Impact Report",
       description: "Comprehensive overview of our programs, reach, and impact in 2023.",
       size: "4.2 MB",
-      date: "December 2023",
-      downloadUrl: "#"
+      date: "December 2023"
     },
     {
       title: "Q4 2023 Financial Audit",
       description: "Audited financial statements and detailed breakdown of fund allocation.",
       size: "2.8 MB",
-      date: "January 2024",
-      downloadUrl: "#"
+      date: "January 2024"
     },
     {
       title: "Governance & Ethical Guidelines",
       description: "Our organizational structure, policies, and ethical standards.",
       size: "1.5 MB",
-      date: "Ongoing",
-      downloadUrl: "#"
+      date: "Ongoing"
     },
     {
       title: "2024 Mid-Year Progress Report",
       description: "Achievements and milestones from January to June 2024.",
       size: "3.1 MB",
-      date: "July 2024",
-      downloadUrl: "#"
+      date: "July 2024"
     }
-  ];
+  ].map((report) => ({
+    ...report,
+    downloadUrl: `mailto:${reportsEmail}?subject=${encodeURIComponent(
+      `Request: ${report.title}`
+    )}&body=${encodeURIComponent(`Hi Novessa team, could you send me a copy of the "${report.title}"? Thank you.`)}`
+  }));
 
   return (
     <>
@@ -84,7 +104,7 @@ export default function ReportsPage() {
                     style={{ whiteSpace: "nowrap" }}
                   >
                     <Download size={18} />
-                    Download
+                    Request Copy
                   </a>
                 </div>
               ))}

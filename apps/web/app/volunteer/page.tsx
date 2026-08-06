@@ -1,8 +1,22 @@
+import type { Metadata } from "next";
 import { BriefcaseBusiness, HeartHandshake, Users } from "lucide-react";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { VolunteerForm } from "@/components/volunteer-form";
+
+export const metadata: Metadata = {
+  title: "Volunteer With Us | Novessa Foundation",
+  description:
+    "Join Novessa Foundation as a volunteer and help deliver mental health, education, and outreach programs to communities across Nigeria.",
+  alternates: { canonical: "/volunteer" },
+  openGraph: {
+    title: "Volunteer With Us | Novessa Foundation",
+    description:
+      "Join Novessa Foundation as a volunteer and help deliver mental health, education, and outreach programs to communities across Nigeria.",
+    url: "/volunteer"
+  }
+};
 
 const opportunities = [
   {

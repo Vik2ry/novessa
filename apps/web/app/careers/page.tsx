@@ -1,6 +1,20 @@
+import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Briefcase, ArrowRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Careers | Novessa Foundation",
+  description:
+    "Explore career and volunteer opportunities at Novessa Foundation and join a team working on mental health, education, and community empowerment in Nigeria.",
+  alternates: { canonical: "/careers" },
+  openGraph: {
+    title: "Careers | Novessa Foundation",
+    description:
+      "Explore career and volunteer opportunities at Novessa Foundation and join a team working on mental health, education, and community empowerment in Nigeria.",
+    url: "/careers"
+  }
+};
 
 export default function CareersPage() {
   return (

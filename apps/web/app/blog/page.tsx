@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
@@ -6,6 +7,19 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StoryCard } from "@/components/story-card";
 import { getSitePayload } from "@/lib/api";
+
+export const metadata: Metadata = {
+  title: "Stories & News | Novessa Foundation",
+  description:
+    "Read stories and updates from the ground — education, mental health, and community outreach work by Novessa Foundation across Nigeria.",
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Stories & News | Novessa Foundation",
+    description:
+      "Read stories and updates from the ground — education, mental health, and community outreach work by Novessa Foundation across Nigeria.",
+    url: "/blog"
+  }
+};
 
 export default async function BlogPage() {
   const site = await getSitePayload();

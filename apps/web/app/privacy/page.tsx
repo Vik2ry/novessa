@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Novessa Foundation",
+  description: "Read Novessa Foundation's privacy policy on how we collect, use, and protect your information.",
+  alternates: { canonical: "/privacy" },
+  robots: { index: true, follow: true }
+};
 
 export default function PrivacyPage() {
   return (
