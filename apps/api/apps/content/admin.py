@@ -31,6 +31,20 @@ class RichTextWidget(forms.Textarea):
 
         return mark_safe(f"""
             <div class="richtext-widget">
+              <style>
+                /* Django Admin's dark theme sets a light --body-fg color meant for dark
+                   backgrounds elsewhere in the admin. This editor surface is deliberately
+                   kept white regardless of the browser/OS theme, so text color must be
+                   forced too, or it inherits that light color and becomes unreadable. */
+                .richtext-editor-surface,
+                .richtext-editor-surface .ql-editor {{
+                  color: #1a1a1a !important;
+                }}
+                .richtext-editor-surface .ql-editor.ql-blank::before {{
+                  color: #6b7280 !important;
+                  font-style: normal !important;
+                }}
+              </style>
               <div id="{editor_id}" class="richtext-editor-surface"
                    style="background:#fff;min-height:220px;"></div>
               <div style="display:none;">{textarea_html}</div>
