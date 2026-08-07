@@ -11,7 +11,7 @@ import { getSitePayload } from "@/lib/api";
 
 export default async function Home() {
   const site = await getSitePayload();
-  const featuredStory = site.stories[0];
+  const featuredStory = site.stories.find((story) => story.featured) ?? site.stories[0];
   const donationCampaign = site.campaigns[0];
 
   return (
@@ -83,9 +83,12 @@ export default async function Home() {
               </Link>
             </div>
             <div className="programGrid">
-              {site.programs.slice(0, 3).map((program) => (
-                <ProgramCard item={program} key={program.slug} />
-              ))}
+              {[...site.programs]
+                .sort((a, b) => Number(b.featured) - Number(a.featured))
+                .slice(0, 3)
+                .map((program) => (
+                  <ProgramCard item={program} key={program.slug} />
+                ))}
             </div>
           </div>
         </section>
@@ -145,9 +148,12 @@ export default async function Home() {
               </Link>
             </div>
             <div className="storyGrid">
-              {site.stories.slice(0, 3).map((story) => (
-                <StoryCard item={story} key={story.slug} />
-              ))}
+              {[...site.stories]
+                .sort((a, b) => Number(b.featured) - Number(a.featured))
+                .slice(0, 3)
+                .map((story) => (
+                  <StoryCard item={story} key={story.slug} />
+                ))}
             </div>
           </div>
         </section>

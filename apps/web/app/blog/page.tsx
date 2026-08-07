@@ -23,7 +23,8 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
   const site = await getSitePayload();
-  const featured = site.stories[0];
+  const featured = site.stories.find((story) => story.featured) ?? site.stories[0];
+  const restStories = site.stories.filter((story) => story.slug !== featured?.slug);
 
   return (
     <>
@@ -57,7 +58,7 @@ export default async function BlogPage() {
               ) : null}
 
               <div className="storyGrid full">
-                {site.stories.slice(1).map((story) => (
+                {restStories.map((story) => (
                   <StoryCard item={story} key={story.slug} />
                 ))}
               </div>
