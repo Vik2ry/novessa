@@ -65,7 +65,17 @@ class ContentItemAdmin(admin.ModelAdmin):
     list_editable = ("status", "featured", "sort_order")
     readonly_fields = ("created_at", "updated_at")
     fieldsets = (
-        ("Publishing", {"fields": ("content_type", "status", "featured", "sort_order")}),
+        (
+            "Publishing",
+            {
+                "fields": ("content_type", "status", "featured", "sort_order"),
+                "description": (
+                    "Only one item per content type can be Featured at a time - checking it "
+                    "here automatically un-features whichever other item of the same type "
+                    "had it before."
+                ),
+            },
+        ),
         (
             "Content",
             {
@@ -86,6 +96,20 @@ class ContentItemAdmin(admin.ModelAdmin):
         if db_field.name == "body":
             kwargs["widget"] = RichTextWidget
         return super().formfield_for_dbfield(db_field, request, **kwargs)
+
+    def save_model(self, request, obj, form, change):
+        previously_featured = None
+        if obj.featured:
+            previously_featured = (
+                ContentItem.objects.filter(content_type=obj.content_type, featured=True).exclude(pk=obj.pk).first()
+            )
+        super().save_model(request, obj, form, change)
+        if previously_featured:
+            self.message_user(
+                request,
+                f'"{previously_featured.title}" was automatically un-featured, since only one '
+                f"{obj.get_content_type_display()} can be featured at a time.",
+            )
 
 
 @admin.register(SiteSetting)

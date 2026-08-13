@@ -37,6 +37,17 @@ class ContentItem(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.featured:
+            # Only one item per content type can be featured at a time - saving
+            # this one as featured automatically un-features whichever other
+            # item of the same type held it before, so "featured" always means
+            # "most recently marked featured", not "first by sort order".
+            ContentItem.objects.filter(content_type=self.content_type, featured=True).exclude(pk=self.pk).update(
+                featured=False
+            )
+
     @property
     def image_url(self) -> str:
         if self.image:
