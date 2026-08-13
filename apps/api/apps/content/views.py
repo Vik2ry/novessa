@@ -50,9 +50,7 @@ def published_items_or_fallback(content_type: str) -> list[dict]:
 
     published_by_slug = {item["slug"]: item for item in published_items}
     merged_items = [
-        merge_content_item(item, published_by_slug.pop(item["slug"]))
-        if item["slug"] in published_by_slug
-        else item
+        merge_content_item(item, published_by_slug.pop(item["slug"])) if item["slug"] in published_by_slug else item
         for item in fallback_items
     ]
     merged_items.extend(published_by_slug.values())
@@ -84,9 +82,9 @@ def site_payload(_request):
     payload = {
         **base_payload,
         "hero": hero.value if hero else base_payload["hero"],
-        "programs": published_items_or_fallback("program")[:6],
-        "stories": published_items_or_fallback("story")[:6],
-        "campaigns": published_items_or_fallback("campaign")[:3],
-        "partners": published_items_or_fallback("partner")[:12],
+        "programs": published_items_or_fallback("program"),
+        "stories": published_items_or_fallback("story"),
+        "campaigns": published_items_or_fallback("campaign"),
+        "partners": published_items_or_fallback("partner"),
     }
     return JsonResponse(payload)
