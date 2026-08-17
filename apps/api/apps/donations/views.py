@@ -35,7 +35,7 @@ def create_donation(request: HttpRequest):
         donor_email=payload["donorEmail"],
         amount_minor=int(payload["amountMinor"]),
         currency=payload.get("currency", "NGN"),
-        campaign_slug=payload.get("campaignSlug", "community-care-fund"),
+        campaign_slug=payload.get("campaignSlug") or "general",
         metadata=payload.get("metadata", {}),
     )
     donation.checkout_url = initialize_paystack_checkout(donation)
