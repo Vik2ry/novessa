@@ -58,9 +58,13 @@ export default async function BlogPage() {
               ) : null}
 
               <div className="storyGrid full">
-                {restStories.map((story) => (
-                  <StoryCard item={story} key={story.slug} />
-                ))}
+                {restStories.length > 0
+                  ? restStories.map((story) => <StoryCard item={story} key={story.slug} />)
+                  : !featured && (
+                      <p style={{ color: "var(--ink-soft)", padding: "24px 0" }}>
+                        No stories are published yet — check back soon.
+                      </p>
+                    )}
               </div>
             </div>
 

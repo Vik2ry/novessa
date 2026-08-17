@@ -56,9 +56,13 @@ export default async function ProgramsPage() {
         <section className="section">
           <div className="container">
             <div className="programGrid full">
-              {site.programs.map((program) => (
-                <ProgramCard item={program} key={program.slug} />
-              ))}
+              {site.programs.length > 0 ? (
+                site.programs.map((program) => <ProgramCard item={program} key={program.slug} />)
+              ) : (
+                <p style={{ color: "var(--ink-soft)", padding: "24px 0" }}>
+                  No programs are published yet — check back soon.
+                </p>
+              )}
             </div>
           </div>
         </section>

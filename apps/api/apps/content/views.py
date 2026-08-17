@@ -1,6 +1,6 @@
 from django.http import Http404, JsonResponse
 
-from apps.content.defaults import FALLBACK_SITE_SETTINGS, get_default_content_items
+from apps.content.defaults import FALLBACK_SITE_SETTINGS
 from apps.content.models import ContentItem, SiteSetting
 
 
@@ -19,46 +19,20 @@ def serialize_content(item: ContentItem) -> dict:
     }
 
 
-def merge_content_item(fallback_item: dict, published_item: dict) -> dict:
-    merged = {
-        **fallback_item,
-        **published_item,
-        "title": published_item["title"] or fallback_item["title"],
-        "summary": published_item["summary"] or fallback_item["summary"],
-        "body": published_item["body"] or fallback_item["body"],
-        "category": published_item["category"] or fallback_item["category"],
-        "imageUrl": published_item["imageUrl"] or fallback_item["imageUrl"],
-        "metadata": {
-            **fallback_item.get("metadata", {}),
-            **published_item.get("metadata", {}),
-        },
-    }
-    return merged
-
-
-def published_items_or_fallback(content_type: str) -> list[dict]:
-    fallback_items = get_default_content_items(content_type)
-    published_items = [
+def published_items(content_type: str) -> list[dict]:
+    """
+    Every published item of this content type, straight from the database -
+    nothing merged in, nothing implied to exist that doesn't. If an item is
+    deleted or unpublished, it is absent from this list, full stop.
+    """
+    return [
         serialize_content(item)
-        for item in ContentItem.objects.filter(
-            content_type=content_type,
-            status=ContentItem.Status.PUBLISHED,
-        )
+        for item in ContentItem.objects.filter(content_type=content_type, status=ContentItem.Status.PUBLISHED)
     ]
-    if not published_items:
-        return fallback_items
-
-    published_by_slug = {item["slug"]: item for item in published_items}
-    merged_items = [
-        merge_content_item(item, published_by_slug.pop(item["slug"])) if item["slug"] in published_by_slug else item
-        for item in fallback_items
-    ]
-    merged_items.extend(published_by_slug.values())
-    return merged_items
 
 
 def list_content(_request, content_type: str):
-    return JsonResponse({"results": published_items_or_fallback(content_type)})
+    return JsonResponse({"results": published_items(content_type)})
 
 
 def content_detail(_request, content_type: str, slug: str):
@@ -67,12 +41,9 @@ def content_detail(_request, content_type: str, slug: str):
         slug=slug,
         status=ContentItem.Status.PUBLISHED,
     ).first()
-    if item:
-        return JsonResponse(serialize_content(item))
-    fallback = next((entry for entry in get_default_content_items(content_type) if entry["slug"] == slug), None)
-    if not fallback:
+    if not item:
         raise Http404("Content not found")
-    return JsonResponse(fallback)
+    return JsonResponse(serialize_content(item))
 
 
 def site_payload(_request):
@@ -82,9 +53,9 @@ def site_payload(_request):
     payload = {
         **base_payload,
         "hero": hero.value if hero else base_payload["hero"],
-        "programs": published_items_or_fallback("program"),
-        "stories": published_items_or_fallback("story"),
-        "campaigns": published_items_or_fallback("campaign"),
-        "partners": published_items_or_fallback("partner"),
+        "programs": published_items("program"),
+        "stories": published_items("story"),
+        "campaigns": published_items("campaign"),
+        "partners": published_items("partner"),
     }
     return JsonResponse(payload)

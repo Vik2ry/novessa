@@ -52,21 +52,27 @@ export default async function PartnersPage() {
               </div>
             </div>
             <div className="partnerGrid">
-              {site.partners.map((partner) => (
-                <article className="partnerCard" key={partner.slug}>
-                  <div className="partnerCardMedia">
-                    <img alt={partner.title} src={partner.imageUrl} />
-                  </div>
-                  <div className="partnerCardBody">
-                    <span>{String(partner.metadata.categoryLabel ?? partner.category)}</span>
-                    <h3>{partner.title}</h3>
-                    <p>{partner.summary}</p>
-                    <div className="sectionLink">
-                      {String(partner.metadata.ctaLabel ?? "Learn More")} <ArrowRight size={16} />
+              {site.partners.length > 0 ? (
+                site.partners.map((partner) => (
+                  <article className="partnerCard" key={partner.slug}>
+                    <div className="partnerCardMedia">
+                      <img alt={partner.title} src={partner.imageUrl} />
                     </div>
-                  </div>
-                </article>
-              ))}
+                    <div className="partnerCardBody">
+                      <span>{String(partner.metadata.categoryLabel ?? partner.category)}</span>
+                      <h3>{partner.title}</h3>
+                      <p>{partner.summary}</p>
+                      <div className="sectionLink">
+                        {String(partner.metadata.ctaLabel ?? "Learn More")} <ArrowRight size={16} />
+                      </div>
+                    </div>
+                  </article>
+                ))
+              ) : (
+                <p style={{ color: "var(--ink-soft)", padding: "24px 0" }}>
+                  No partners are published yet — check back soon.
+                </p>
+              )}
             </div>
           </div>
         </section>

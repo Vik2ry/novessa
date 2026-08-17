@@ -54,7 +54,7 @@ export default async function DonatePage() {
 
         <section className="section donateZone">
           <div className="container">
-            <DonationForm campaignSlug={campaign?.slug ?? "community-care-fund"} tiers={site.donationTiers} />
+            <DonationForm campaignSlug={campaign?.slug ?? "general"} tiers={site.donationTiers} />
           </div>
         </section>
 
