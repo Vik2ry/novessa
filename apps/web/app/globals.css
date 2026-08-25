@@ -2265,6 +2265,7 @@ body.mobileDrawerOpen {
 
 .chartPanel,
 .regionPanel {
+  align-content: start;
   display: grid;
   gap: 18px;
 }
