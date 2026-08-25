@@ -38,14 +38,18 @@ export default async function ImpactPage() {
 
         <section className="section">
           <div className="container">
-            <div className="metricGrid">
+            {/* Commented out per client request - these are demo/placeholder totals
+                (site.dashboard.totals from Site Settings -> site_summary). Re-enable by
+                uncommenting once real figures are entered, or once this is wired to a
+                dedicated backend field rather than the shared dashboard totals. */}
+            {/* <div className="metricGrid">
               {site.dashboard.totals.map((metric) => (
                 <article className="metricTile" key={metric.label}>
                   <span>{metric.label}</span>
                   <strong>{metric.value}</strong>
                 </article>
               ))}
-            </div>
+            </div> */}
 
             <div className="dashboardSplit">
               <article className="panel chartPanel">
