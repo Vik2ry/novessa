@@ -45,7 +45,7 @@ FALLBACK_SITE_SETTINGS = {
     "contact": {
         "phone": "+234 907 555 0144",
         "email": "hello@novessafoundation.org",
-        "address": "Lagos, Nigeria",
+        "address": "Osun, Nigeria",
         "whatsappLabel": "Live support available 9AM - 5PM WAT",
         "socials": [
             {"label": "Instagram", "href": "https://instagram.com/novessafoundation"},
