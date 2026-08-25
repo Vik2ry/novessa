@@ -10,14 +10,14 @@ import { getSitePayload } from "@/lib/api";
 export const metadata: Metadata = {
   title: "Contact Us | Novessa Foundation",
   description:
-    "Get in touch with Novessa Foundation — reach our team in Lagos, Nigeria by phone, email, or the contact form for partnerships, support, or media inquiries.",
+    "Get in touch with Novessa Foundation — reach our team in Osun, Nigeria by phone, email, or the contact form for partnerships, support, or media inquiries.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact Us | Novessa Foundation",
     description:
-      "Get in touch with Novessa Foundation — reach our team in Lagos, Nigeria by phone, email, or the contact form for partnerships, support, or media inquiries.",
-    url: "/contact"
-  }
+      "Get in touch with Novessa Foundation — reach our team in Osun, Nigeria by phone, email, or the contact form for partnerships, support, or media inquiries.",
+    url: "/contact",
+  },
 };
 
 export default async function ContactPage() {
