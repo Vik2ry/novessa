@@ -40,16 +40,6 @@ const milestones = [
     year: "2026",
     title: "The Foundation Begins",
     body: "Novessa launched to confront the silence, stigma, and misinformation surrounding mental health in Nigeria."
-  },
-  {
-    year: "2027",
-    title: "First Community Circles",
-    body: "Awareness sessions and caregiver conversations expanded into schools, churches, and local neighborhoods."
-  },
-  {
-    year: "2028",
-    title: "Education Partnerships",
-    body: "Scholarship and mentoring support began linking mental wellbeing work to practical opportunity."
   }
 ];
 
@@ -62,7 +52,7 @@ export default function AboutPage() {
           <div className="heroBackdrop">
             <img
               alt="Novessa Foundation community workshop"
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1800&q=80"
+              src="/about-hero.jpg"
             />
           </div>
           <div className="container heroBannerContent centered">
