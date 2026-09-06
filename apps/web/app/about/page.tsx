@@ -129,7 +129,7 @@ export default function AboutPage() {
               <div className="leaderPhoto">
                 <img
                   alt="Samson Adedeji"
-                  src="/founder.jpeg"
+                  src="/founder.jpg"
                 />
               </div>
               <div className="leaderDetails">
