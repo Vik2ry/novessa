@@ -159,7 +159,7 @@ export default function PrivacyPage() {
               </ul>
               <p>
                 To exercise these rights, contact us at
-                hello@novessafoundation.org.
+                hello@novessafoundation.org.ng.
               </p>
             </section>
 
@@ -200,7 +200,7 @@ export default function PrivacyPage() {
                 If you have questions about this Privacy Policy or our privacy
                 practices, please contact us:
                 <br />
-                Email: hello@novessafoundation.org
+                Email: hello@novessafoundation.org.ng
                 <br />
                 Phone: +234 907 555 0144
                 <br />

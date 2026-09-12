@@ -51,23 +51,33 @@ export default async function ContactPage() {
                     <p>{site.contact.email}</p>
                   </div>
                 </article>
-                <article className="contactCard whatsappCard">
+                <a
+                  className="contactCard whatsappCard"
+                  href={`https://wa.me/${site.contact.phone.replace(/\D/g, "")}`}
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   <MessageCircle size={20} />
                   <div>
                     <h3>WhatsApp Us</h3>
                     <p>{site.contact.whatsappLabel}</p>
                   </div>
-                </article>
-                <article className="mapCard">
+                </a>
+                <a
+                  className="mapCard"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.contact.address)}`}
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   <img
-                    alt="Illustrative map view of Lagos"
+                    alt="Map preview - click to open in Google Maps"
                     src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80"
                   />
                   <div className="mapBadge">
                     <MapPin size={16} />
                     <span>{site.contact.address}</span>
                   </div>
-                </article>
+                </a>
               </div>
 
               <div className="formPanel">
