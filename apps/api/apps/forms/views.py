@@ -35,6 +35,8 @@ def contact(request):
         subject=payload["subject"],
         message=payload["message"],
     )
+    MailgunEmailService.contact_confirmation(message.email, message.full_name)
+    MailgunEmailService.contact_notification(message.full_name, message.email, message.subject, message.message)
     return JsonResponse({"id": message.id, "message": "Message received"}, status=201)
 
 
