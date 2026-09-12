@@ -106,7 +106,7 @@ export default function TermsPage() {
               <p>
                 If you have any questions about these Terms and Conditions, please contact us at:
                 <br />
-                Email: hello@novessafoundation.org
+                Email: hello@novessafoundation.org.ng
                 <br />
                 Phone: +234 907 555 0144
               </p>

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 // uploaded and served from the API, each "Download" button opens a pre-filled
 // email request instead of a dead "#" link, so nothing on this page is a broken link.
 export default function ReportsPage() {
-  const reportsEmail = "hello@novessafoundation.org";
+  const reportsEmail = "hello@novessafoundation.org.ng";
   const reports = [
     {
       title: "2023 Annual Impact Report",
@@ -129,8 +129,8 @@ export default function ReportsPage() {
               </p>
               <p style={{ color: "var(--ink-soft)", lineHeight: "1.8" }}>
                 If you have questions about our reports or would like additional information, please contact us at{" "}
-                <a href="mailto:hello@novessafoundation.org" style={{ color: "var(--primary)", fontWeight: "600" }}>
-                  hello@novessafoundation.org
+                <a href="mailto:hello@novessafoundation.org.ng" style={{ color: "var(--primary)", fontWeight: "600" }}>
+                  hello@novessafoundation.org.ng
                 </a>
                 .
               </p>

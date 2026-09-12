@@ -32,7 +32,7 @@ export function SiteFooter({ variant = "dark" }: { variant?: "dark" | "light" })
             <a href="https://linkedin.com/company/novessafoundation" rel="noreferrer" target="_blank">
               <Linkedin size={16} />
             </a>
-            <a href="mailto:hello@novessafoundation.org">
+            <a href="mailto:hello@novessafoundation.org.ng">
               <Mail size={16} />
             </a>
           </div>

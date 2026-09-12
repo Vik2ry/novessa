@@ -190,7 +190,7 @@ export const fallbackSite: SitePayload = {
   ],
   contact: {
     phone: "+234 907 555 0144",
-    email: "hello@novessafoundation.org",
+    email: "hello@novessafoundation.org.ng",
     address: "Osun, Nigeria",
     whatsappLabel: "Live support available 9AM - 5PM WAT",
     socials: [

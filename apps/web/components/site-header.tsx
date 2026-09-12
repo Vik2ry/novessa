@@ -125,7 +125,7 @@ export function SiteHeader({ activeHref }: { activeHref?: string }) {
             <a href="https://instagram.com/novessafoundation" rel="noreferrer" target="_blank">
               Instagram
             </a>
-            <a href={`mailto:${"hello@novessafoundation.org"}`}>Email</a>
+            <a href={`mailto:${"hello@novessafoundation.org.ng"}`}>Email</a>
             <a href={`tel:${"+2349075550144"}`}>
               <Phone size={14} /> Call
             </a>
