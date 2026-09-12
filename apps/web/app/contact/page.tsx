@@ -64,18 +64,15 @@ export default async function ContactPage() {
                   </div>
                 </a>
                 <a
-                  className="mapCard"
+                  className="contactCard"
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.contact.address)}`}
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <img
-                    alt="Map preview - click to open in Google Maps"
-                    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80"
-                  />
-                  <div className="mapBadge">
-                    <MapPin size={16} />
-                    <span>{site.contact.address}</span>
+                  <MapPin size={20} />
+                  <div>
+                    <h3>View on Map</h3>
+                    <p>{site.contact.address}</p>
                   </div>
                 </a>
               </div>
