@@ -35,9 +35,7 @@ class EmailService:
             logger.warning("EMAIL_PREVIEW to=%s subject=%s", message.to, message.subject)
             return None
 
-        if cls._smtp_backend_needs_credentials() and (
-            not settings.EMAIL_HOST_USER or not settings.EMAIL_HOST_PASSWORD
-        ):
+        if cls._smtp_backend_needs_credentials() and (not settings.EMAIL_HOST_USER or not settings.EMAIL_HOST_PASSWORD):
             logger.warning("SMTP email is not configured. Skipping outbound email.")
             return None
 
@@ -192,6 +190,76 @@ class EmailService:
                     footer_note="This confirmation was generated after a volunteer application was submitted.",
                 ),
                 tags=("volunteer",),
+            )
+        )
+
+    @classmethod
+    def contact_confirmation(cls, to_email: str, full_name: str) -> dict | None:
+        content_html = f"""
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
+                  style="border:1px solid {BRAND_BORDER}; border-radius:10px; overflow:hidden;
+                         margin:22px 0; background:#ffffff;">
+                  {cls._detail_row("Message status", "Received", BRAND_EMERALD)}
+                  {cls._detail_row("Typical response time", "Within 24 hours")}
+                </table>
+                <p style="margin:0; font-size:15px; line-height:25px; color:{BRAND_INK};">
+                  Our team will read your message and get back to you directly at this email address.
+                </p>"""
+        return cls.send(
+            EmailMessage(
+                to=to_email,
+                subject="We received your message - Novessa Foundation",
+                text=(
+                    f"Dear {full_name},\n\n"
+                    "Thank you for reaching out to Novessa Foundation. "
+                    "Our team will read your message and get back to you within 24 hours.\n\n"
+                    "Novessa Foundation"
+                ),
+                html=cls._email_shell(
+                    preheader="Your message to Novessa Foundation has been received.",
+                    title="Message received",
+                    intro=f"Dear {full_name}, thank you for reaching out to Novessa Foundation.",
+                    content_html=content_html,
+                    footer_note="This confirmation was generated after a contact form submission.",
+                ),
+                tags=("contact-confirmation",),
+            )
+        )
+
+    @classmethod
+    def contact_notification(cls, sender_name: str, sender_email: str, subject: str, message_body: str) -> dict | None:
+        content_html = f"""
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
+                  style="border:1px solid {BRAND_BORDER}; border-radius:10px; overflow:hidden;
+                         margin:22px 0; background:#ffffff;">
+                  {cls._detail_row("From", f"{sender_name} <{sender_email}>")}
+                  {cls._detail_row("Subject", subject)}
+                </table>
+                <p style="margin:0 0 8px; font-size:13px; line-height:18px; color:{BRAND_MUTED};
+                          text-transform:uppercase; letter-spacing:0.05em;">
+                  Message
+                </p>
+                <p style="margin:0; font-size:15px; line-height:25px; color:{BRAND_INK}; white-space:pre-wrap;">
+                  {escape(message_body)}
+                </p>"""
+        return cls.send(
+            EmailMessage(
+                to=settings.ADMIN_EMAIL,
+                subject=f"New contact message: {subject}",
+                text=(
+                    f"New message from the website contact form.\n\n"
+                    f"From: {sender_name} <{sender_email}>\n"
+                    f"Subject: {subject}\n\n"
+                    f"{message_body}"
+                ),
+                html=cls._email_shell(
+                    preheader=f"New contact message from {sender_name}",
+                    title="New contact form message",
+                    intro=f"{sender_name} submitted a message through the website contact form.",
+                    content_html=content_html,
+                    footer_note="Reply directly to the sender's email address to respond.",
+                ),
+                tags=("contact-notification",),
             )
         )
 
